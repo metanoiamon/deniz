@@ -1,0 +1,21 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+dist/
+dist.new/
+dist.old/
+dist.failed/
+
+# uploaded images (user content, not source); the folders themselves are kept
+/uploads/*/*
+!/uploads/*/.gitkeep
+
+# database and image backups made by deploy/scripts/backup.sh
+/backups/
+
+# menu exported with `npm run db:export-menu` (the restaurant's own data)
+/menu-export/

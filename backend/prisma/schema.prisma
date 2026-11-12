@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// DEVELOPER: owner of the template (full access, the only role that manages developer accounts)
+// MAIN: restaurant manager (everything except developer accounts)
+// SECONDARY: restaurant staff (categories, products, survey responses)
+enum AdminRole {
+  DEVELOPER
+  MAIN
+  SECONDARY
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  name         String
+  passwordHash String
+  role         AdminRole @default(SECONDARY)
+  isActive     Boolean   @default(true)
+  // با هر تغییر رمز یکی زیاد می‌شه تا توکن‌های قبلی باطل بشن
+  tokenVersion Int       @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  createdCategories Category[]       @relation("categoriesCreated")
+  updatedCategories Category[]       @relation("categoriesUpdated")
+  createdProducts   Product[]        @relation("productsCreated")
+  updatedProducts   Product[]        @relation("productsUpdated")
+  updatedResponses  SurveyResponse[] @relation("surveyResponsesUpdated")
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Menu ─────────────────────────────────────────────────────────────────────
+
+/// Top-level menu section shown as a tab on the menu page (pizza, burger, drinks, …).
+model MenuType {
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
+  /// Tab order on the menu page (ascending).
+  sortOrder  Int        @default(0)
+  /// Inactive types and their categories are hidden from the public menu.
+  isActive   Boolean    @default(true)
+  categories Category[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String
+  menuTypeId  Int
+  menuType    MenuType   @relation(fields: [menuTypeId], references: [id], onDelete: Restrict)
+  /// Order inside its menu type (ascending).
+  sortOrder   Int        @default(0)
+  products    Product[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  createdById String?
+  updatedById String?
+  createdBy   AdminUser? @relation("categoriesCreated", fields: [createdById], references: [id], onDelete: SetNull)
+  updatedBy   AdminUser? @relation("categoriesUpdated", fields: [updatedById], references: [id], onDelete: SetNull)
+
+  @@index([menuTypeId, sortOrder])
+}
+
+model Product {
+  id          Int        @id @default(autoincrement())
+  name        String
+  price       Int
+  description String     @default("")
+  image       String     @default("placeholder.png")
+  categoryId  Int
+  category    Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  /// Order inside its category (ascending).
+  sortOrder   Int        @default(0)
+  /// Hidden products are not on the public menu at all (e.g. a seasonal item), but are kept for later.
+  isActive    Boolean    @default(true)
+  /// Out of stock today: still listed on the menu, marked «ناموجود».
+  isAvailable Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  createdById String?
+  updatedById String?
+  createdBy   AdminUser? @relation("productsCreated", fields: [createdById], references: [id], onDelete: SetNull)
+  updatedBy   AdminUser? @relation("productsUpdated", fields: [updatedById], references: [id], onDelete: SetNull)
+
+  @@index([categoryId, sortOrder])
+}
+
+/// A slide of the swiper at the top of the menu page. Image only, no link.
+model Banner {
+  id        Int      @id @default(autoincrement())
+  /// Optional; tells banners apart in the admin panel and is the image's alt text on the site.
+  title     String?
+  image     String
+  /// Slide order (ascending).
+  sortOrder Int      @default(0)
+  /// Inactive banners are kept but not shown.
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive, sortOrder])
+}
+
+// ─── Survey (نظرسنجی) ─────────────────────────────────────────────────────────
+// The questions are defined by the admin. A customer's submission is one SurveyResponse with one SurveyAnswer per
+// answered question. A response's comment can be published on the site (the public «نظرات» list) with a reply.
+
+enum SurveyQuestionType {
+  STARS // 1..5, shown as stars
+  EMOJI // 1..5, shown as faces (1 = very unhappy … 5 = very happy)
+  YES_NO
+  SLIDER // 0..100
+  CHOICE // one of the question's options
+  SHORT_TEXT // up to 100 characters
+  LONG_TEXT // up to 1000 characters
+  PHONE // Iranian mobile number, stored as 09xxxxxxxxx
+}
+
+/// What a text question means for the public «نظرات» list: NAME = the author shown, COMMENT = the text shown.
+/// At most one active question has each role.
+enum SurveyPublicRole {
+  NONE
+  NAME
+  COMMENT
+}
+
+model SurveyQuestion {
+  id         Int                @id @default(autoincrement())
+  title      String
+  type       SurveyQuestionType
+  isRequired Boolean            @default(false)
+  publicRole SurveyPublicRole   @default(NONE)
+  /// Order on the form (ascending).
+  sortOrder  Int                @default(0)
+  /// Inactive questions are not on the form; their old answers are kept.
+  isActive   Boolean            @default(true)
+  options    SurveyOption[]
+  answers    SurveyAnswer[]
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+
+  @@index([isActive, sortOrder])
+}
+
+/// An option of a CHOICE question.
+model SurveyOption {
+  id         Int            @id @default(autoincrement())
+  questionId Int
+  question   SurveyQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  label      String
+  sortOrder  Int            @default(0)
+  answers    SurveyAnswer[]
+
+  @@index([questionId])
+}
+
+model SurveyResponse {
+  id          Int            @id @default(autoincrement())
+  createdAt   DateTime       @default(now())
+  /// Seen by an admin.
+  isRead      Boolean        @default(false)
+  /// Its comment is shown on the site, in the public «نظرات» list.
+  isPublished Boolean        @default(false)
+  /// The restaurant's public reply (shown with the published comment).
+  reply       String?
+  updatedAt   DateTime       @updatedAt
+  updatedById String?
+  updatedBy   AdminUser?     @relation("surveyResponsesUpdated", fields: [updatedById], references: [id], onDelete: SetNull)
+  answers     SurveyAnswer[]
+
+  @@index([createdAt])
+  @@index([isPublished, createdAt])
+}
+
+/// One answer. Exactly one value column is used, by question type: intValue (STARS, EMOJI, SLIDER),
+/// boolValue (YES_NO), optionId (CHOICE), textValue (SHORT_TEXT, LONG_TEXT, PHONE).
+model SurveyAnswer {
+  id         Int            @id @default(autoincrement())
+  responseId Int
+  response   SurveyResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  questionId Int
+  question   SurveyQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  intValue   Int?
+  boolValue  Boolean?
+  textValue  String?
+  optionId   Int?
+  option     SurveyOption?  @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@unique([responseId, questionId])
+  @@index([questionId])
+  @@index([optionId])
+}

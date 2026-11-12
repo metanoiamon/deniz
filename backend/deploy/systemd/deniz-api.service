@@ -1,0 +1,48 @@
+# systemd service for the Deniz API.
+#
+# Before use, replace (the guide does it with sed):
+#   arvin                   → the Linux user that owns the project
+#   /home/arvin/deniz-api   → the project folder
+# and check the node path: `which node` (NodeSource installs to /usr/bin/node).
+#
+# Install:
+#   sudo cp deploy/systemd/deniz-api.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now deniz-api
+#   journalctl -u deniz-api -f        # logs
+
+[Unit]
+Description=Deniz fast food API
+After=network-online.target postgresql.service
+Wants=network-online.target
+# a crash loop (e.g. a broken .env) stops after 5 tries in a minute instead of spinning forever
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=arvin
+Group=arvin
+WorkingDirectory=/home/arvin/deniz-api
+# the rest of the settings come from .env in the working directory
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node dist/server.js
+Restart=on-failure
+RestartSec=3
+# SIGTERM lets the server finish running requests (src/server.ts gives them 10 s)
+KillSignal=SIGTERM
+TimeoutStopSec=15
+
+# hardening: the process can write only to its own folder, cannot gain privileges, sees a private /tmp
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

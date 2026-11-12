@@ -1,0 +1,53 @@
+{
+	"name": "deniz-fastfood-api",
+	"version": "1.0.0",
+	"description": "Deniz fast food: backend for the online menu (tabs, categories, products, banners) and the customer survey with its public comments, plus an admin API. Express + Prisma + PostgreSQL (TypeScript).",
+	"private": true,
+	"engines": {
+		"node": ">=20.19"
+	},
+	"main": "dist/server.js",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch --clear-screen=false src/server.ts",
+		"build": "prisma generate && tsc -p tsconfig.build.json",
+		"start": "node dist/server.js",
+		"typecheck": "tsc -p tsconfig.json",
+		"test": "node --import tsx --test --test-concurrency=1 \"test/**/*.test.ts\"",
+		"test:unit": "node --import tsx --test \"test/unit/**/*.test.ts\"",
+		"prisma:generate": "prisma generate",
+		"prisma:migrate": "prisma migrate dev",
+		"prisma:deploy": "prisma migrate deploy",
+		"prisma:studio": "prisma studio",
+		"db:seed": "tsx prisma/seed.ts",
+		"db:export-menu": "tsx prisma/export-menu.ts"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.22.0",
+		"bcryptjs": "^2.4.3",
+		"cookie-parser": "^1.4.7",
+		"cors": "^2.8.6",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"express-rate-limit": "^7.4.1",
+		"helmet": "^8.0.0",
+		"jsonwebtoken": "^9.0.2",
+		"morgan": "^1.10.0",
+		"multer": "^2.0.2"
+	},
+	"devDependencies": {
+		"@types/bcryptjs": "^2.4.6",
+		"@types/cookie-parser": "^1.4.7",
+		"@types/express": "^4.17.21",
+		"@types/jsonwebtoken": "^9.0.7",
+		"@types/morgan": "^1.9.9",
+		"@types/multer": "^1.4.12",
+		"@types/node": "^22.9.0",
+		"prisma": "^5.22.0",
+		"tsx": "^4.19.2",
+		"typescript": "^5.6.3"
+	},
+	"prisma": {
+		"seed": "tsx prisma/seed.ts"
+	}
+}

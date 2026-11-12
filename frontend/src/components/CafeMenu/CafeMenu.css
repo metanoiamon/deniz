@@ -1,0 +1,501 @@
+/* ==========================================================================
+   CAFE MENU — Deniz Cafe
+   رنگ‌های برند: فیروزه‌ای #019ea7 · زرد #fdcc02 · سرمه‌ای-سبز #174f5a
+   ========================================================================== */
+
+.cafe-menu-section {
+  --teal: #019ea7;
+  --teal-strong: #017f87; /* برای متن روی زمینه‌ی روشن، خوانایی بهتر */
+  --ink: #174f5a;
+  --sun: #fdcc02;
+  --sun-hover: #f0be00;
+  --mist: #f2fafa;
+  --line: #dcebeb;
+  --muted: #5f777c;
+  --danger: #c62828;
+
+   width: 100%;
+  padding: 48px 20px 56px;
+  background: #ffffff;
+  color: var(--ink);
+  direction: rtl;
+  font-family: inherit;
+}
+
+
+.cafe-menu-container {
+  width: 100%;
+  max-width: 1180px;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   عنوان
+   ========================================================================== */
+
+.cafe-menu-heading {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.cafe-menu-heading h2 {
+  margin: 0;
+  color: var(--teal);
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.cafe-menu-heading h2::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: 4px;
+  background: var(--sun);
+}
+
+.cafe-menu-heading p {
+  max-width: 440px;
+  margin: 12px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* ==========================================================================
+   دسته‌بندی‌ها
+   ========================================================================== */
+
+.cafe-category-swiper {
+  margin-bottom: 18px;
+  padding: 4px 4px 8px;
+  overflow: hidden;
+}
+
+.cafe-category-swiper .cafe-category-slide {
+  width: auto;
+}
+
+.cafe-category {
+  height: 50px;
+  padding-inline: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.cafe-category:has(img) {
+  padding-inline-start: 8px;
+}
+
+.cafe-category img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.cafe-category:hover {
+  border-color: var(--teal);
+}
+
+.cafe-category.is-active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   پنل محصولات
+   ========================================================================== */
+
+.cafe-products-panel {
+  min-width: 0;
+  padding: 6px 14px 18px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--mist);
+}
+
+.cafe-panel-header {
+  width: 100%;
+  padding: 14px 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink);
+
+  font: inherit;
+  text-align: right;
+  cursor: pointer;
+}
+
+.cafe-panel-title {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.cafe-panel-count {
+  margin-inline-end: auto;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cafe-panel-arrow {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--teal-strong);
+  transition: transform 0.25s ease;
+}
+
+.cafe-panel-header[aria-expanded="false"] .cafe-panel-arrow {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   اسلایدر محصولات
+   ========================================================================== */
+
+.cafe-products-swiper {
+  min-width: 0;
+  padding: 4px 2px 6px;
+  overflow: hidden;
+}
+
+.cafe-products-swiper .cafe-product-slide {
+  width: 208px;
+  height: auto;
+  display: flex;
+}
+
+/* ==========================================================================
+   کارت محصول
+   ========================================================================== */
+
+.cafe-product-card {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 10px 14px;
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+
+  transition: border-color 0.2s ease;
+}
+
+.cafe-product-card:hover {
+  border-color: var(--teal);
+}
+
+.cafe-product-image {
+  position: relative;
+  height: 140px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  border-radius: 12px;
+  background: var(--mist);
+}
+
+.cafe-product-image img {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  object-fit: contain;
+}
+
+.cafe-image-fallback {
+  display: grid;
+  place-items: center;
+  color: #9fcfcf;
+}
+
+.cafe-image-fallback svg {
+  width: 56px;
+  height: 56px;
+}
+
+.cafe-product-card h3 {
+  margin: 12px 4px 4px;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.7;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cafe-product-description {
+  min-height: 3.8em;
+  margin: 0 4px 14px;
+
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* قیمت و دکمه‌ی افزودن */
+
+.cafe-product-bottom {
+  margin-top: auto;
+  padding-inline: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cafe-product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.cafe-product-price small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.cafe-add-button {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 50%;
+  background: var(--sun);
+  color: var(--ink);
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.cafe-add-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cafe-add-button:hover:not(:disabled) {
+  background: var(--sun-hover);
+}
+
+.cafe-add-button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.cafe-add-button:disabled {
+  background: #dfe7e8;
+  color: #8a9a9d;
+  cursor: not-allowed;
+}
+
+.cafe-add-count {
+  position: absolute;
+  top: -6px;
+  inset-inline-end: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: 5px;
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ناموجود */
+
+.cafe-product-card.is-unavailable .cafe-product-image img {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.cafe-unavailable {
+  position: absolute;
+  top: 8px;
+  inset-inline-start: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #fdecec;
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   وضعیت خالی
+   ========================================================================== */
+
+.cafe-status {
+  padding: 28px 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2;
+  text-align: center;
+}
+
+/* ==========================================================================
+   دسترسی‌پذیری
+   ========================================================================== */
+
+.cafe-category:focus-visible,
+.cafe-panel-header:focus-visible,
+.cafe-add-button:focus-visible {
+  outline: 3px solid var(--teal-strong);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   تبلت
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .cafe-menu-section {
+    padding: 40px 16px 48px;
+  }
+
+  .cafe-products-swiper .cafe-product-slide {
+    width: 196px;
+  }
+
+  .cafe-product-image {
+    height: 128px;
+  }
+}
+
+/* ==========================================================================
+   موبایل
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .cafe-menu-section {
+    padding: 32px 12px 40px;
+  }
+
+  .cafe-menu-heading {
+    margin-bottom: 22px;
+  }
+
+  .cafe-menu-heading p {
+    max-width: 320px;
+    font-size: 13px;
+  }
+
+  .cafe-category {
+    height: 46px;
+    padding-inline: 16px;
+    font-size: 13px;
+  }
+
+  .cafe-category:has(img) {
+    padding-inline-start: 7px;
+  }
+
+  .cafe-category img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cafe-products-panel {
+    padding: 4px 8px 14px;
+    border-radius: 20px;
+  }
+
+  .cafe-panel-title {
+    font-size: 17px;
+  }
+
+  .cafe-products-swiper .cafe-product-slide {
+    width: 176px;
+  }
+
+  .cafe-product-card {
+    padding: 8px 8px 12px;
+    border-radius: 16px;
+  }
+
+  .cafe-product-image {
+    height: 112px;
+  }
+
+  .cafe-product-card h3 {
+    font-size: 14px;
+  }
+
+  .cafe-product-price {
+    font-size: 14px;
+  }
+
+  .cafe-add-button {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cafe-products-swiper .cafe-product-slide {
+    width: 164px;
+  }
+}
+
+/* ==========================================================================
+   کاهش حرکت
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .cafe-category,
+  .cafe-product-card,
+  .cafe-panel-arrow,
+  .cafe-add-button {
+    transition: none;
+  }
+}

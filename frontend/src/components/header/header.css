@@ -1,0 +1,333 @@
+
+.site-header {
+  width: 100%;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e8eeee;
+  box-shadow: 0 3px 15px rgba(23, 79, 90, 0.06);
+}
+
+.header-container {
+  width: min(1440px, 94%);
+  min-height: 84px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+/* لوگو */
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-logo img {
+  display: block;
+  width: 105px;
+  height: 72px;
+  object-fit: contain;
+}
+
+/* منوی اصلی */
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 30px);
+}
+
+.nav-link {
+  position: relative;
+  color: #394552;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 5px;
+  background: #019ea7;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #019ea7;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* آیکون‌ها و اطلاعات تماس */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-shrink: 0;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 12px;
+  background: #effafa;
+  color: #019ea7;
+  transition: 0.2s ease;
+}
+
+.header-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cart-icon {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.header-icon:hover {
+  background: #019ea7;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.instagram-icon .icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdcc02;
+  color: #174f5a;
+  border-radius: 50px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.header-phones {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-right: 12px;
+  border-right: 1px solid #e2ebeb;
+}
+
+.header-phones a {
+  color: #394552;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.header-phones a:hover {
+  color: #019ea7;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* تبلت */
+
+@media (max-width: 1050px) {
+  .header-container {
+    gap: 15px;
+  }
+
+  .header-logo img {
+    width: 85px;
+  }
+
+  .header-nav {
+    gap: 13px;
+  }
+
+  .nav-link {
+    font-size: 11px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header-phones a {
+    font-size: 9px;
+  }
+}
+
+/* موبایل */
+
+@media (max-width: 760px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+  }
+
+  .header-container {
+    width: 92%;
+    min-height: 70px;
+    padding: 7px 0;
+    gap: 10px;
+  }
+
+  .header-logo img {
+    width: 78px;
+    height: 55px;
+  }
+
+  .header-actions {
+    gap: 9px;
+  }
+
+  .header-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+  }
+
+  .header-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header-phones {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 11px;
+    background: #019ea7;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .mobile-menu-btn svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* منوی کشویی موبایل */
+
+  .header-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    padding: 10px 4% 18px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    border-top: 1px solid #edf1f2;
+    box-shadow: 0 12px 20px rgba(23, 79, 90, 0.09);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: 0.25s ease;
+  }
+
+  .header-nav.show-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 14px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f3f3;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-link.active {
+    background: #effafa;
+    border-radius: 8px;
+  }
+}
+
+/* گوشی‌های کوچک */
+
+@media (max-width: 380px) {
+  .header-container {
+    width: 94%;
+  }
+
+  .header-logo img {
+    width: 68px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .header-icon,
+  .mobile-menu-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .header-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}

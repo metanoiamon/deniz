@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+  # weekly, so a new security advisory or a broken dependency shows up even when nobody pushes
+  schedule:
+    - cron: '17 4 * * 1'
+
+# a newer push to the same branch cancels the run that is still going
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build and test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        # the oldest version package.json allows, and the current LTS
+        node: ['20.19', '22']
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: deniz
+          POSTGRES_PASSWORD: deniz
+          POSTGRES_DB: deniz_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U deniz -d deniz_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      # Throwaway database of this run. Its name must contain "test": the integration tests wipe it.
+      DATABASE_URL: postgresql://deniz:deniz@localhost:5432/deniz_test?schema=public
+      TEST_DATABASE_URL: postgresql://deniz:deniz@localhost:5432/deniz_test?schema=public
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install dependencies (exactly as locked)
+        run: npm ci
+
+      - name: Validate the Prisma schema
+        run: npx prisma validate
+
+      - name: Generate the Prisma client
+        run: npx prisma generate
+
+      - name: Type check (server, scripts and tests)
+        run: npm run typecheck
+
+      - name: Apply migrations to an empty database
+        run: npx prisma migrate deploy
+
+      # A schema.prisma change without its migration would deploy a server whose queries do not match the tables.
+      - name: Check the migrations match schema.prisma
+        run: npx prisma migrate diff --from-url "$DATABASE_URL" --to-schema-datamodel prisma/schema.prisma --exit-code
+
+      - name: Production build
+        run: npm run build
+
+      - name: Unit and integration tests
+        run: npm test
+
+  scripts:
+    name: Check deploy scripts
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        run: shellcheck deploy/scripts/*.sh
+
+  audit:
+    name: Security audit (production dependencies)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: npm audit
+        run: npm audit --omit=dev --audit-level=high

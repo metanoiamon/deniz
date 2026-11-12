@@ -1,0 +1,256 @@
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #f5fbfb;
+}
+
+.hero-swiper {
+  width: 100%;
+  direction: rtl;
+}
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 36vw, 540px);
+  min-height: 300px;
+  overflow: hidden;
+  background: #f5fbfb;
+}
+
+.hero-slide-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.9) 28%,
+    rgba(255, 255, 255, 0.35) 48%,
+    rgba(255, 255, 255, 0) 72%
+  );
+}
+
+.hero-slide-content {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: max(7%, calc((100% - 1200px) / 2));
+  width: min(43%, 500px);
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 8px 15px;
+  border-radius: 30px;
+  color: #087f85;
+  background: rgba(1, 158, 167, 0.1);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero-heading {
+  margin: 0;
+  color: #174f5a;
+  font-size: clamp(32px, 4.2vw, 60px);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.hero-heading span {
+  color: #019ea7;
+}
+
+.hero-subtitle {
+  max-width: 420px;
+  margin: 14px 0 23px;
+  color: #52666b;
+  font-size: clamp(13px, 1.2vw, 17px);
+  line-height: 2;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 145px;
+  min-height: 46px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: #fdcc02;
+  color: #174f5a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 5px 15px rgba(253, 204, 2, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(253, 204, 2, 0.35);
+}
+
+.hero-cta span {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.hero-brand-note {
+  position: absolute;
+  z-index: 2;
+  left: 5%;
+  bottom: 25px;
+  width: 110px;
+}
+
+.hero-brand-note img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* فلش‌های اسلایدر */
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #019ea7;
+  box-shadow: 0 3px 12px rgba(23, 79, 90, 0.1);
+}
+
+.hero-swiper .swiper-button-prev::after,
+.hero-swiper .swiper-button-next::after {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.hero-swiper .swiper-pagination {
+  bottom: 14px !important;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #019ea7;
+  opacity: 0.45;
+  transition: width 0.25s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  width: 23px;
+  border-radius: 10px;
+  opacity: 1;
+}
+
+/* تبلت */
+@media (max-width: 900px) {
+  .hero-slide {
+    height: 380px;
+  }
+
+  .hero-slide-content {
+    right: 6%;
+    width: 46%;
+  }
+
+  .hero-heading {
+    font-size: clamp(30px, 5vw, 43px);
+  }
+
+  .hero-subtitle {
+    font-size: 13px;
+  }
+
+  .hero-brand-note {
+    display: none;
+  }
+}
+
+/* موبایل */
+@media (max-width: 600px) {
+  .hero-slide {
+    height: 430px;
+    min-height: 0;
+  }
+
+  .hero-slide-image {
+    object-position: center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.99) 0%,
+      rgba(255, 255, 255, 0.94) 38%,
+      rgba(255, 255, 255, 0.05) 75%
+    );
+  }
+
+  .hero-slide-content {
+    top: auto;
+    right: 7%;
+    bottom: 40px;
+    width: 86%;
+    transform: none;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 8px;
+    padding: 6px 11px;
+    font-size: 11px;
+  }
+
+  .hero-heading {
+    font-size: clamp(29px, 8vw, 38px);
+    line-height: 1.5;
+  }
+
+  .hero-subtitle {
+    max-width: 310px;
+    margin: 8px 0 14px;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  .hero-cta {
+    min-height: 40px;
+    min-width: 125px;
+    padding: 8px 17px;
+    font-size: 12px;
+  }
+
+  .hero-swiper .swiper-button-prev,
+  .hero-swiper .swiper-button-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero-swiper .swiper-button-prev::after,
+  .hero-swiper .swiper-button-next::after {
+    font-size: 12px;
+  }
+
+  .hero-swiper .swiper-pagination {
+    bottom: 12px !important;
+  }
+}
