@@ -1,0 +1,601 @@
+.adm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  background: #f3f7f7;
+  color: #394552;
+}
+
+/* ---------- سایدبار ---------- */
+
+.adm-side {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+  background: #174f5a;
+  color: #ffffff;
+}
+
+.adm-brand span {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.adm-brand small {
+  color: #a9d6da;
+  font-size: 12px;
+}
+
+.adm-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.adm-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #d8f1f3;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.adm-tabs button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.adm-tabs button.active {
+  background: #019ea7;
+  color: #ffffff;
+}
+
+.adm-tabs em {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #fdcc02;
+  color: #174f5a;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.adm-exit {
+  padding: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adm-exit:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- محتوا ---------- */
+
+.adm-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px clamp(16px, 4vw, 48px);
+}
+
+.adm-title {
+  margin: 0 0 22px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #174f5a;
+}
+
+.adm-sub {
+  margin: 30px 0 14px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #174f5a;
+}
+
+.adm-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.adm-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2ebeb;
+}
+
+.adm-stat span {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #6b7885;
+}
+
+.adm-stat strong {
+  font-size: 26px;
+  font-weight: 800;
+  color: #019ea7;
+}
+
+.adm-stat small {
+  font-size: 11.5px;
+  color: #8a96a2;
+}
+
+.adm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adm-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e2ebeb;
+}
+
+.adm-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.adm-row-main strong {
+  font-size: 14px;
+  color: #174f5a;
+}
+
+.adm-row-main span {
+  font-size: 12px;
+  color: #8a96a2;
+}
+
+.adm-row-price {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.adm-badge {
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.adm-badge.new {
+  background: #fff6cc;
+  color: #8a6d00;
+}
+.adm-badge.preparing {
+  background: #e0f4f5;
+  color: #017a82;
+}
+.adm-badge.delivered {
+  background: #e3f6e8;
+  color: #1c7a3a;
+}
+.adm-badge.cancelled {
+  background: #fde7e7;
+  color: #b42323;
+}
+
+.adm-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.adm-row-actions button {
+  padding: 7px 13px;
+  border: none;
+  border-radius: 9px;
+  background: #019ea7;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adm-row-actions button.danger {
+  background: #fde7e7;
+  color: #b42323;
+}
+
+/* سوییچ موجود / ناموجود */
+.adm-switch {
+  width: 46px;
+  height: 26px;
+  padding: 3px;
+  border: none;
+  border-radius: 20px;
+  background: #cfd8dc;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.adm-switch span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.adm-switch.on {
+  background: #019ea7;
+}
+
+.adm-switch.on span {
+  transform: translateX(-20px);
+}
+
+/* ---------- موبایل ---------- */
+
+@media (max-width: 860px) {
+  .adm-overlay {
+    flex-direction: column;
+  }
+
+  .adm-side {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    padding: 12px 14px;
+  }
+
+  .adm-brand {
+    flex: 1;
+  }
+
+  .adm-brand span {
+    font-size: 15px;
+  }
+
+  .adm-exit {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .adm-tabs {
+    order: 3;
+    width: 100%;
+    flex: none;
+    flex-direction: row;
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .adm-tabs button {
+    flex: 1;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+
+  .adm-main {
+    padding: 20px 14px 32px;
+  }
+
+  .adm-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adm-stat strong {
+    font-size: 21px;
+  }
+
+  .adm-row-price {
+    order: 2;
+  }
+}
+
+
+/* ================= ویرایشگر منو ================= */
+
+.adm-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.adm-topbar .adm-title {
+  margin: 0;
+}
+
+.adm-topbar-actions,
+.adm-sub-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adm-sub-row {
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+.adm-sub-row .adm-sub {
+  margin: 0;
+}
+
+.adm-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 11px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.adm-btn.primary {
+  background: #019ea7;
+  color: #ffffff;
+}
+
+.adm-btn.ghost {
+  background: #ffffff;
+  color: #174f5a;
+  border: 1.5px solid #dcebeb;
+}
+
+.adm-btn:disabled {
+  background: #dfe7e8;
+  color: #8a9a9d;
+  cursor: not-allowed;
+}
+
+.adm-status {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.adm-status p {
+  margin: 0 0 8px;
+}
+
+.adm-status.ok {
+  background: #e3f6e8;
+  color: #1c5f33;
+}
+
+.adm-status.err {
+  background: #fde7e7;
+  color: #b42323;
+}
+
+.adm-status pre {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #174f5a;
+  color: #ffffff;
+  font-size: 12.5px;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.adm-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.adm-cat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 10px;
+  border: 1.5px solid #dcebeb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.adm-cat.active {
+  border-color: #174f5a;
+  background: #174f5a;
+  color: #ffffff;
+}
+
+.adm-cat-name {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 4px;
+  cursor: pointer;
+}
+
+.adm-cat.add {
+  border-style: dashed;
+  padding: 10px 14px;
+  color: #019ea7;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.adm-mini {
+  display: flex;
+  gap: 3px;
+}
+
+.adm-mini button {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 7px;
+  background: rgba(1, 158, 167, 0.12);
+  color: #019ea7;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.adm-cat.active .adm-mini button {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.adm-mini button.danger {
+  background: #fde7e7;
+  color: #b42323;
+}
+
+.adm-empty {
+  padding: 22px;
+  text-align: center;
+  color: #8a96a2;
+  font-size: 13px;
+}
+
+.adm-row-main span {
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- فرم ---------- */
+
+.adm-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(12, 38, 44, 0.55);
+}
+
+.adm-form {
+  width: min(460px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.adm-form h3 {
+  margin: 0;
+  font-size: 17px;
+  color: #174f5a;
+}
+
+.adm-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #394552;
+}
+
+.adm-form small {
+  font-weight: 500;
+  color: #8a96a2;
+}
+
+.adm-form input,
+.adm-form textarea,
+.adm-form select {
+  padding: 10px 12px;
+  border: 1.5px solid #dcebeb;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #174f5a;
+}
+
+.adm-form input:focus,
+.adm-form textarea:focus,
+.adm-form select:focus {
+  outline: none;
+  border-color: #019ea7;
+}
+
+.adm-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.adm-check {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+}
+
+.adm-check input {
+  width: 18px;
+  height: 18px;
+}
+
+.adm-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 860px) {
+  .adm-row-main span {
+    max-width: 200px;
+  }
+
+  .adm-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

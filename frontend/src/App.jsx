@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 
 import Header from "./components/header/header";
 import Hero from "./components/Hero/Hero";
@@ -10,8 +9,14 @@ import Cart from "./components/Cart/Cart";
 
 import { CartProvider } from "./context/CartContext";
 
+// پنل مدیریت فقط در حالت dev بارگذاری می‌شود و داخل build نهایی نمی‌رود
+const AdminPanel = import.meta.env.DEV
+  ? lazy(() => import("./components/Admin/Adminpanel"))
+  : null;
+
 function AppContent() {
   const [currentPage, setCurrentPage] = useState("home");
+  const [adminOpen, setAdminOpen] = useState(false);
 
   const goHome = () => {
     setCurrentPage("home");
@@ -36,6 +41,7 @@ function AppContent() {
       <Header
         onCartClick={openCart}
         onHomeClick={goHome}
+        onAdminClick={() => setAdminOpen(true)}
       />
 
       {currentPage === "cart" ? (
@@ -49,6 +55,12 @@ function AppContent() {
       )}
 
       <Footer />
+
+      {AdminPanel && adminOpen && (
+        <Suspense fallback={null}>
+          <AdminPanel onClose={() => setAdminOpen(false)} />
+        </Suspense>
+      )}
     </>
   );
 }

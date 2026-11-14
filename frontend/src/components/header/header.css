@@ -1,3 +1,14 @@
+:root {
+  --h-teal: #019ea7;
+  --h-teal-dark: #174f5a;
+  --h-teal-soft: #effafa;
+  --h-yellow: #fdcc02;
+  --h-text: #394552;
+  --h-line: #e2ebeb;
+  --bottom-bar-h: 66px;
+}
+
+/* ================= هدر ================= */
 
 .site-header {
   width: 100%;
@@ -5,9 +16,87 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #e8eeee;
-  box-shadow: 0 3px 15px rgba(23, 79, 90, 0.06);
+  border-bottom: 1px solid var(--h-line);
+  transition: box-shadow 0.25s ease;
 }
+
+.site-header.is-scrolled {
+  box-shadow: 0 6px 24px rgba(23, 79, 90, 0.12);
+}
+
+/* ---------- نوار اطلاع‌رسانی ---------- */
+
+.top-bar {
+  background: var(--h-teal-dark);
+  color: #ffffff;
+  overflow: hidden;
+  max-height: 38px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.is-scrolled .top-bar {
+  max-height: 0;
+  opacity: 0;
+}
+
+.top-bar-inner {
+  width: min(1440px, 94%);
+  height: 38px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.top-bar-msg {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: topBarIn 0.45s ease;
+}
+
+.top-bar-msg::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--h-yellow);
+  flex-shrink: 0;
+}
+
+@keyframes topBarIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.top-bar-phones {
+  display: flex;
+  gap: 18px;
+}
+
+.top-bar-phones a {
+  color: #d8f1f3;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.top-bar-phones a:hover {
+  color: var(--h-yellow);
+}
+
+/* ---------- ردیف اصلی ---------- */
 
 .header-container {
   width: min(1440px, 94%);
@@ -17,9 +106,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 25px;
+  transition: min-height 0.25s ease;
 }
 
-/* لوگو */
+.is-scrolled .header-container {
+  min-height: 68px;
+}
 
 .header-logo {
   display: flex;
@@ -32,69 +124,89 @@
   width: 105px;
   height: 72px;
   object-fit: contain;
+  transition: width 0.25s ease, height 0.25s ease;
 }
 
-/* منوی اصلی */
+.is-scrolled .header-logo img {
+  width: 88px;
+  height: 58px;
+}
+
+/* ---------- منو ---------- */
 
 .header-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 2vw, 30px);
+  gap: clamp(4px, 1vw, 12px);
 }
 
 .nav-link {
   position: relative;
-  color: #394552;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--h-text);
   text-decoration: none;
   white-space: nowrap;
   font-size: 13px;
   font-weight: 700;
-  padding: 12px 0;
-  transition: color 0.2s ease;
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
-.nav-link::after {
+.nav-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-link:hover {
+  color: var(--h-teal);
+  background: var(--h-teal-soft);
+}
+
+.nav-link.active {
+  color: var(--h-teal);
+  background: var(--h-teal-soft);
+}
+
+.nav-link.active::after {
   content: "";
   position: absolute;
-  bottom: 3px;
-  right: 0;
-  width: 0;
-  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  width: 18px;
+  height: 3px;
+  margin-left: -9px;
   border-radius: 5px;
-  background: #019ea7;
-  transition: width 0.25s ease;
+  background: var(--h-yellow);
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: #019ea7;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
-}
-
-/* آیکون‌ها و اطلاعات تماس */
+/* ---------- دکمه‌ها ---------- */
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
 .header-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   border-radius: 12px;
-  background: #effafa;
-  color: #019ea7;
+  background: var(--h-teal-soft);
+  color: var(--h-teal);
   transition: 0.2s ease;
 }
 
@@ -107,6 +219,7 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
 .cart-icon {
   border: none;
   cursor: pointer;
@@ -114,7 +227,7 @@
 }
 
 .header-icon:hover {
-  background: #019ea7;
+  background: var(--h-teal);
   color: #ffffff;
   transform: translateY(-2px);
 }
@@ -126,62 +239,181 @@
 
 .cart-count {
   position: absolute;
-  top: -5px;
-  left: -5px;
-  min-width: 17px;
-  height: 17px;
-  padding: 0 4px;
+  top: -6px;
+  left: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fdcc02;
-  color: #174f5a;
+  background: var(--h-yellow);
+  color: var(--h-teal-dark);
+  border: 2px solid #ffffff;
   border-radius: 50px;
   font-size: 10px;
   font-weight: 800;
+  box-sizing: content-box;
+  animation: pop 0.3s ease;
 }
 
-.header-phones {
+@keyframes pop {
+  0% {
+    transform: scale(0.4);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.admin-btn,
+.call-btn {
+  height: 42px;
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-right: 12px;
-  border-right: 1px solid #e2ebeb;
-}
-
-.header-phones a {
-  color: #394552;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 800;
   text-decoration: none;
-  font-size: 11px;
-  font-weight: 700;
-  transition: color 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.header-phones a:hover {
-  color: #019ea7;
+.admin-btn svg,
+.call-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.admin-btn {
+  background: #ffffff;
+  color: var(--h-teal-dark);
+  border: 1.5px solid var(--h-line);
+}
+
+.admin-btn:hover {
+  border-color: var(--h-teal-dark);
+  background: var(--h-teal-dark);
+  color: #ffffff;
+}
+
+.call-btn {
+  background: var(--h-yellow);
+  color: var(--h-teal-dark);
+  border: 1.5px solid var(--h-yellow);
+}
+
+.call-btn:hover {
+  background: #f0bf00;
+  transform: translateY(-2px);
 }
 
 .mobile-menu-btn {
   display: none;
 }
 
-/* تبلت */
+/* این بخش‌ها فقط در موبایل دیده می‌شوند */
+.drawer-overlay,
+.mobile-drawer,
+.bottom-bar {
+  display: none;
+}
 
-@media (max-width: 1050px) {
+/* ================= لپ‌تاپ کوچک / تبلت ================= */
+
+@media (max-width: 1280px) {
+  .admin-btn span {
+    display: none;
+  }
+
+  .admin-btn {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1100px) {
   .header-container {
-    gap: 15px;
+    gap: 14px;
   }
 
   .header-logo img {
-    width: 85px;
-  }
-
-  .header-nav {
-    gap: 13px;
+    width: 88px;
   }
 
   .nav-link {
-    font-size: 11px;
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+
+  .nav-link svg {
+    display: none;
+  }
+
+  .call-btn span {
+    display: none;
+  }
+
+  .call-btn {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* ================= موبایل ================= */
+
+@media (max-width: 860px) {
+  body {
+    padding-bottom: var(--bottom-bar-h);
+  }
+
+  .top-bar-phones {
+    display: none;
+  }
+
+  .top-bar-inner {
+    justify-content: center;
+  }
+
+  .header-container {
+    width: 92%;
+    min-height: 64px;
+    padding: 6px 0;
+    gap: 10px;
+  }
+
+  .is-scrolled .header-container {
+    min-height: 58px;
+  }
+
+  .header-logo img {
+    width: 74px;
+    height: 52px;
+  }
+
+  .is-scrolled .header-logo img {
+    width: 66px;
+    height: 46px;
+  }
+
+  .header-nav,
+  .admin-btn,
+  .cart-icon {
+    display: none;
   }
 
   .header-actions {
@@ -189,52 +421,20 @@
   }
 
   .header-icon {
-    width: 36px;
-    height: 36px;
-  }
-
-  .header-phones a {
-    font-size: 9px;
-  }
-}
-
-/* موبایل */
-
-@media (max-width: 760px) {
-  .site-header {
-    position: sticky;
-    top: 0;
-  }
-
-  .header-container {
-    width: 92%;
-    min-height: 70px;
-    padding: 7px 0;
-    gap: 10px;
-  }
-
-  .header-logo img {
-    width: 78px;
-    height: 55px;
-  }
-
-  .header-actions {
-    gap: 9px;
-  }
-
-  .header-icon {
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
     border-radius: 11px;
   }
 
-  .header-icon svg {
-    width: 20px;
-    height: 20px;
+  .call-btn {
+    width: auto;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 11px;
   }
 
-  .header-phones {
-    display: none;
+  .call-btn span {
+    display: inline;
   }
 
   .mobile-menu-btn {
@@ -242,7 +442,7 @@
     height: 40px;
     border: none;
     border-radius: 11px;
-    background: #019ea7;
+    background: var(--h-teal);
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -251,8 +451,8 @@
   }
 
   .mobile-menu-btn svg {
-    width: 23px;
-    height: 23px;
+    width: 22px;
+    height: 22px;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
@@ -260,52 +460,299 @@
     stroke-linejoin: round;
   }
 
-  /* منوی کشویی موبایل */
+  /* ---------- کشوی کناری ---------- */
 
-  .header-nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    padding: 10px 4% 18px;
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    border-top: 1px solid #edf1f2;
-    box-shadow: 0 12px 20px rgba(23, 79, 90, 0.09);
-
+  .drawer-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(12, 38, 44, 0.55);
+    backdrop-filter: blur(3px);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: 0.25s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
-  .header-nav.show-menu {
+  .drawer-overlay.open {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
   }
 
-  .nav-link {
-    width: 100%;
-    padding: 14px 10px;
+  .mobile-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 86%);
+    z-index: 1200;
+    background: #ffffff;
+    box-shadow: -10px 0 40px rgba(12, 38, 44, 0.25);
+    transform: translateX(105%);
+    visibility: hidden;
+    transition: transform 0.32s cubic-bezier(0.22, 0.8, 0.3, 1),
+      visibility 0.32s;
+    overflow-y: auto;
+  }
+
+  .mobile-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, var(--h-teal) 0%, var(--h-teal-dark) 100%);
+  }
+
+  .drawer-head img {
+    width: 82px;
+    height: 56px;
+    object-fit: contain;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 4px 8px;
+  }
+
+  .drawer-close {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .drawer-close svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px;
+    flex: 1;
+  }
+
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--h-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: right;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .drawer-link-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: var(--h-teal-soft);
+    color: var(--h-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .drawer-link-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .drawer-link.active {
+    background: var(--h-teal-soft);
+    color: var(--h-teal);
+  }
+
+  .drawer-link.active .drawer-link-icon {
+    background: var(--h-teal);
+    color: #ffffff;
+  }
+
+  .drawer-admin {
+    margin-top: 10px;
+    border: 1.5px dashed var(--h-line);
+    color: var(--h-teal-dark);
+  }
+
+  .drawer-admin .drawer-link-icon {
+    background: var(--h-teal-dark);
+    color: #ffffff;
+  }
+
+  .drawer-foot {
+    padding: 16px 18px 22px;
+    background: #f6fafa;
+    border-top: 1px solid var(--h-line);
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .drawer-foot-title {
+    margin: 0 0 2px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--h-teal-dark);
+  }
+
+  .drawer-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--h-yellow);
+    color: var(--h-teal-dark);
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .drawer-phone svg,
+  .drawer-insta svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .drawer-insta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 42px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1.5px solid var(--h-line);
+    color: var(--h-text);
     font-size: 13px;
-    border-bottom: 1px solid #f0f3f3;
+    font-weight: 700;
+    text-decoration: none;
   }
 
-  .nav-link::after {
-    display: none;
+  .drawer-insta .icon-fill {
+    fill: currentColor;
+    stroke: none;
   }
 
-  .nav-link.active {
-    background: #effafa;
-    border-radius: 8px;
+  /* ---------- نوار پایین ---------- */
+
+  .bottom-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: var(--bottom-bar-h);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: content-box;
+    z-index: 1000;
+    background: #ffffff;
+    border-top: 1px solid var(--h-line);
+    box-shadow: 0 -6px 22px rgba(23, 79, 90, 0.1);
+  }
+
+  .bottom-bar a,
+  .bottom-bar button {
+    height: var(--bottom-bar-h);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    color: #7b8794;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bottom-bar svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .bottom-bar a.active {
+    color: var(--h-teal);
+  }
+
+  /* دکمه سبد خرید برجسته در وسط */
+  .bottom-bar .bottom-cart {
+    color: var(--h-teal-dark);
+  }
+
+  .bottom-cart-circle {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    margin-top: -26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--h-yellow);
+    color: var(--h-teal-dark);
+    border: 4px solid #ffffff;
+    box-shadow: 0 6px 16px rgba(253, 204, 2, 0.5);
+  }
+
+  .bottom-cart-circle .cart-count {
+    top: -4px;
+    left: -4px;
+    background: var(--h-teal-dark);
+    color: #ffffff;
   }
 }
 
-/* گوشی‌های کوچک */
+/* ================= گوشی‌های کوچک ================= */
 
 @media (max-width: 380px) {
   .header-container {
@@ -313,7 +760,7 @@
   }
 
   .header-logo img {
-    width: 68px;
+    width: 64px;
   }
 
   .header-actions {
@@ -322,12 +769,33 @@
 
   .header-icon,
   .mobile-menu-btn {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
   }
 
-  .header-icon svg {
-    width: 18px;
-    height: 18px;
+  .call-btn {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 11.5px;
+  }
+
+  .top-bar-msg {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .top-bar,
+  .header-container,
+  .header-logo img,
+  .mobile-drawer,
+  .drawer-overlay {
+    transition: none;
+  }
+
+  .top-bar-msg,
+  .cart-count {
+    animation: none;
   }
 }

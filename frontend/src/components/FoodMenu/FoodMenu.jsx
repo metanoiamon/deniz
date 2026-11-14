@@ -1,6 +1,5 @@
 
-import { useMemo, useState } from "react";
-
+import { useEffect, useMemo, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 
@@ -9,10 +8,6 @@ import "swiper/css/free-mode";
 import "./FoodMenu.css";
 
 import { useCart } from "../../context/CartContext";
-
-/* ==========================================================================
-   داده‌های آزمایشی
-   ========================================================================== */
 
 const CATEGORIES = [
   { id: "burger", name: "برگرها" },
@@ -27,7 +22,6 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  // برگر
   {
     id: "classic-burger",
     categoryId: "burger",
@@ -52,8 +46,6 @@ const PRODUCTS = [
     price: 260000,
     isAvailable: true,
   },
-
-  // پیتزا آمریکایی
   {
     id: "special-pizza",
     categoryId: "pizza-american",
@@ -71,8 +63,6 @@ const PRODUCTS = [
     price: 320000,
     isAvailable: true,
   },
-
-  // پیتزا ایتالیایی
   {
     id: "margherita-pizza",
     categoryId: "pizza-italian",
@@ -89,8 +79,6 @@ const PRODUCTS = [
     price: 360000,
     isAvailable: true,
   },
-
-  // سالاد و پاستا
   {
     id: "caesar-salad",
     categoryId: "salad-pasta",
@@ -107,8 +95,6 @@ const PRODUCTS = [
     price: 240000,
     isAvailable: true,
   },
-
-  // ساندویچ مرغ
   {
     id: "grilled-chicken-sandwich",
     categoryId: "chicken-sandwich",
@@ -125,8 +111,6 @@ const PRODUCTS = [
     price: 220000,
     isAvailable: true,
   },
-
-  // ساندویچ
   {
     id: "club-sandwich",
     categoryId: "sandwich",
@@ -143,8 +127,6 @@ const PRODUCTS = [
     price: 180000,
     isAvailable: true,
   },
-
-  // سیب‌زمینی و اسنک
   {
     id: "french-fries",
     categoryId: "fries-snack",
@@ -161,8 +143,6 @@ const PRODUCTS = [
     price: 130000,
     isAvailable: true,
   },
-
-  // دونر
   {
     id: "chicken-doner",
     categoryId: "doner",
@@ -179,8 +159,6 @@ const PRODUCTS = [
     price: 240000,
     isAvailable: true,
   },
-
-  // سوخاری
   {
     id: "fried-chicken-four",
     categoryId: "fried-chicken",
@@ -198,10 +176,6 @@ const PRODUCTS = [
     isAvailable: true,
   },
 ];
-
-/* ==========================================================================
-   ابزارها
-   ========================================================================== */
 
 const formatNumber = (value) =>
   new Intl.NumberFormat("fa-IR").format(Number(value) || 0);
@@ -231,8 +205,9 @@ const CATEGORY_IMAGE_RULES = [
 ];
 
 function getCategoryImage(name = "") {
-  const value = name.toLowerCase();
-  const rule = CATEGORY_IMAGE_RULES.find((item) => item.test(value));
+  const rule = CATEGORY_IMAGE_RULES.find((item) =>
+    item.test(name.toLowerCase())
+  );
 
   return `/images/food-categories/${rule ? rule.file : "burger.png"}`;
 }
@@ -241,69 +216,66 @@ const SLIDER_PROPS = {
   modules: [FreeMode],
   freeMode: true,
   slidesPerView: "auto",
-  spaceBetween: 10,
+  spaceBetween: 12,
   grabCursor: true,
   dir: "rtl",
 };
 
-/* ==========================================================================
-   آیکون‌ها
-   ========================================================================== */
+function PlateIcon() {
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <circle
+        cx="24"
+        cy="24"
+        r="17"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+      />
+      <circle
+        cx="24"
+        cy="24"
+        r="10"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+      />
+    </svg>
+  );
+}
 
-const PlusIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      d="M12 5v14M5 12h14"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+function PlusIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 5v14M5 12h14"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
-const ChevronIcon = () => (
-  <svg
-    className="food-panel-arrow"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <path
-      d="M6 15l6-6 6 6"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const PlateIcon = () => (
-  <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-    <circle
-      cx="24"
-      cy="24"
-      r="17"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-    />
-    <circle
-      cx="24"
-      cy="24"
-      r="10"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-    />
-  </svg>
-);
-
-/* ==========================================================================
-   اجزای کوچک
-   ========================================================================== */
+function ChevronIcon() {
+  return (
+    <svg
+      className="food-panel-arrow"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M6 15l6-6 6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function ProductImage({ src, alt }) {
   const [failed, setFailed] = useState(!src);
@@ -349,17 +321,34 @@ function CategoryChip({ category, active, onSelect }) {
   );
 }
 
-function ProductCard({ product, count, onAdd }) {
+function ProductCard({ product, count, onAdd, onOpen }) {
   const { name, description, price, image, isAvailable } = product;
 
   return (
     <article
       className={`food-product-card${isAvailable ? "" : " is-unavailable"}`}
     >
-      <div className="food-product-image">
-        <ProductImage src={image} alt={name} />
-        {!isAvailable && <span className="food-unavailable">ناموجود</span>}
-      </div>
+      <button
+        type="button"
+        className="food-product-image-button"
+        onClick={() => onOpen(product)}
+        aria-label={`مشاهده جزئیات ${name}`}
+        disabled={!isAvailable}
+      >
+        <div className="food-product-image">
+          <ProductImage src={image} alt={name} />
+
+          {!isAvailable && (
+            <span className="food-unavailable">ناموجود</span>
+          )}
+
+          {isAvailable && (
+            <span className="food-image-hint">
+              مشاهده جزئیات <span aria-hidden="true">↗</span>
+            </span>
+          )}
+        </div>
+      </button>
 
       <h3>{name}</h3>
 
@@ -390,32 +379,122 @@ function ProductCard({ product, count, onAdd }) {
   );
 }
 
-/* ==========================================================================
-   منوی غذا
-   ========================================================================== */
+function ProductDetailsModal({ product, onClose, onAdd }) {
+  useEffect(() => {
+    if (!product) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.classList.add("food-modal-open");
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("food-modal-open");
+    };
+  }, [product, onClose]);
+
+  if (!product) return null;
+
+  const categoryName =
+    CATEGORIES.find((item) => item.id === product.categoryId)?.name ??
+    "منوی دنیز";
+
+  return (
+    <div
+      className="food-modal-backdrop"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section
+        className="food-product-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="food-modal-title"
+        dir="rtl"
+      >
+        <button
+          type="button"
+          className="food-modal-close"
+          onClick={onClose}
+          aria-label="بستن پنجره"
+        >
+          ×
+        </button>
+
+        <div className="food-modal-image">
+          <ProductImage src={product.image} alt={product.name} />
+
+          <span className="food-modal-category">
+            {categoryName}
+          </span>
+        </div>
+
+        <div className="food-modal-content">
+          <span className="food-modal-eyebrow">پیشنهاد دنیز</span>
+
+          <h2 id="food-modal-title">{product.name}</h2>
+
+          <p className="food-modal-description">
+            {product.description}
+          </p>
+
+          <div className="food-modal-info">
+            <div>
+              <span>قیمت</span>
+
+              <strong>
+                {formatNumber(product.price)} <small>تومان</small>
+              </strong>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="food-modal-add"
+            disabled={!product.isAvailable}
+            onClick={() => {
+              onAdd(product);
+              onClose();
+            }}
+          >
+            <PlusIcon />
+            افزودن به سبد خرید
+          </button>
+
+          <p className="food-modal-note">
+            برای مشاهده تصویر بزرگ‌تر، روی عکس غذا بزنید.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
 
 const FoodMenu = () => {
   const [activeCategory, setActiveCategory] = useState(CATEGORIES[0].id);
   const [expanded, setExpanded] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // دریافت اطلاعات سبد خرید
   const { cart = [], addItem } = useCart();
 
-  // اطمینان از اینکه اطلاعات سبد همیشه آرایه باشد
   const cartItems = Array.isArray(cart)
     ? cart
     : Object.values(cart ?? {});
 
-  // دسته‌بندی فعال
   const activeName = CATEGORIES.find(
     (category) => category.id === activeCategory
   )?.name;
 
-  // محصولات دسته انتخاب‌شده
   const visibleProducts = useMemo(
-    () => PRODUCTS.filter(
-      (product) => product.categoryId === activeCategory
-    ),
+    () =>
+      PRODUCTS.filter(
+        (product) => product.categoryId === activeCategory
+      ),
     [activeCategory]
   );
 
@@ -424,7 +503,6 @@ const FoodMenu = () => {
     setExpanded(true);
   }
 
-  // پیدا کردن تعداد هر محصول در سبد خرید
   function getProductCount(productId) {
     const cartItem = cartItems.find(
       (item) => String(item.id) === String(productId)
@@ -441,15 +519,13 @@ const FoodMenu = () => {
       aria-labelledby="food-menu-title"
     >
       <div className="food-menu-container">
-
         <header className="food-menu-heading">
           <h2 id="food-menu-title">منوی غذا</h2>
+
           <p>
             از یک برگر لذیذ تا پیتزای ایتالیایی، همه‌چیز در دنیز!
           </p>
         </header>
-
-        {/* دسته‌بندی‌ها */}
 
         <Swiper
           {...SLIDER_PROPS}
@@ -469,10 +545,7 @@ const FoodMenu = () => {
           ))}
         </Swiper>
 
-        {/* محصولات دسته انتخاب‌شده */}
-
         <div className="food-products-panel">
-
           <button
             type="button"
             className="food-panel-header"
@@ -492,7 +565,6 @@ const FoodMenu = () => {
           </button>
 
           <div id="food-products">
-
             {expanded &&
               (visibleProducts.length === 0 ? (
                 <p className="food-status">
@@ -513,16 +585,21 @@ const FoodMenu = () => {
                         product={product}
                         count={getProductCount(product.id)}
                         onAdd={addItem}
+                        onOpen={setSelectedProduct}
                       />
                     </SwiperSlide>
                   ))}
                 </Swiper>
               ))}
-
           </div>
         </div>
-
       </div>
+
+      <ProductDetailsModal
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        onAdd={addItem}
+      />
     </section>
   );
 };

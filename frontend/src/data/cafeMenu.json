@@ -1,0 +1,166 @@
+{
+  "categories": [
+    {
+      "id": "tea-breakfast",
+      "name": "چای و نوشیدنی صبحانه"
+    },
+    {
+      "id": "iced-coffee",
+      "name": "آیس کافی"
+    },
+    {
+      "id": "hot-coffee",
+      "name": "هات کافی"
+    },
+    {
+      "id": "ice-pack",
+      "name": "آیس پک"
+    },
+    {
+      "id": "shake",
+      "name": "شیک"
+    },
+    {
+      "id": "cake",
+      "name": "کیک"
+    }
+  ],
+  "products": [
+    {
+      "id": "black-tea",
+      "categoryId": "tea-breakfast",
+      "name": "چای دمی",
+      "description": "چای سیاه تازه‌دم، همراه با نبات",
+      "price": 60000,
+      "isAvailable": true
+    },
+    {
+      "id": "masala-tea",
+      "categoryId": "tea-breakfast",
+      "name": "چای ماسالا",
+      "description": "چای سیاه با شیر و ادویه‌های گرم",
+      "price": 95000,
+      "isAvailable": true
+    },
+    {
+      "id": "hot-cocoa",
+      "categoryId": "tea-breakfast",
+      "name": "شیر کاکائو داغ",
+      "description": "شیر داغ با کاکائوی غلیظ",
+      "price": 90000,
+      "isAvailable": true
+    },
+    {
+      "id": "iced-latte",
+      "categoryId": "iced-coffee",
+      "name": "آیس لاته",
+      "description": "اسپرسو دوبل، شیر سرد و یخ",
+      "price": 150000,
+      "isAvailable": true
+    },
+    {
+      "id": "iced-americano",
+      "categoryId": "iced-coffee",
+      "name": "آیس آمریکانو",
+      "description": "اسپرسو دوبل با آب سرد و یخ",
+      "price": 120000,
+      "isAvailable": true
+    },
+    {
+      "id": "iced-mocha",
+      "categoryId": "iced-coffee",
+      "name": "آیس موکا",
+      "description": "اسپرسو، سس شکلات، شیر سرد و یخ",
+      "price": 170000,
+      "isAvailable": true
+    },
+    {
+      "id": "espresso",
+      "categoryId": "hot-coffee",
+      "name": "اسپرسو",
+      "description": "یک شات اسپرسوی غلیظ و خوش‌عطر",
+      "price": 85000,
+      "isAvailable": true
+    },
+    {
+      "id": "cappuccino",
+      "categoryId": "hot-coffee",
+      "name": "کاپوچینو",
+      "description": "اسپرسو با شیر بخارداده و فوم نرم",
+      "price": 140000,
+      "isAvailable": true
+    },
+    {
+      "id": "hot-latte",
+      "categoryId": "hot-coffee",
+      "name": "لاته",
+      "description": "اسپرسو دوبل با شیر بخارداده",
+      "price": 145000,
+      "isAvailable": true
+    },
+    {
+      "id": "caramel-ice-pack",
+      "categoryId": "ice-pack",
+      "name": "آیس پک کارامل",
+      "description": "قهوه و یخ مخلوط‌شده با سس کارامل و خامه",
+      "price": 190000,
+      "isAvailable": true
+    },
+    {
+      "id": "mocha-ice-pack",
+      "categoryId": "ice-pack",
+      "name": "آیس پک موکا",
+      "description": "قهوه و یخ مخلوط‌شده با سس شکلات و خامه",
+      "price": 195000,
+      "isAvailable": true
+    },
+    {
+      "id": "chocolate-shake",
+      "categoryId": "shake",
+      "name": "شیک شکلات",
+      "description": "بستنی وانیل، شیر و سس شکلات",
+      "price": 200000,
+      "isAvailable": true
+    },
+    {
+      "id": "strawberry-shake",
+      "categoryId": "shake",
+      "name": "شیک توت‌فرنگی",
+      "description": "بستنی، شیر و توت‌فرنگی تازه",
+      "price": 210000,
+      "isAvailable": true
+    },
+    {
+      "id": "vanilla-shake",
+      "categoryId": "shake",
+      "name": "شیک وانیل",
+      "description": "بستنی وانیل و شیر، همراه با خامه",
+      "price": 190000,
+      "isAvailable": true
+    },
+    {
+      "id": "chocolate-cake",
+      "categoryId": "cake",
+      "name": "کیک شکلاتی",
+      "description": "کیک اسفنجی شکلاتی با روکش گاناش",
+      "price": 170000,
+      "isAvailable": true
+    },
+    {
+      "id": "cheesecake",
+      "categoryId": "cake",
+      "name": "چیزکیک",
+      "description": "چیزکیک خامه‌ای با سس میوه‌ی قرمز",
+      "price": 200000,
+      "isAvailable": true
+    },
+    {
+      "id": "carrot-cake",
+      "categoryId": "cake",
+      "name": "کیک هویج و گردو",
+      "description": "کیک ادویه‌دار با هویج، گردو و کرم پنیر",
+      "price": 180000,
+      "isAvailable": true
+    }
+  ]
+}

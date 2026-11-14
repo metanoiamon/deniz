@@ -1,0 +1,195 @@
+{
+  "categories": [
+    {
+      "id": "burger",
+      "name": "برگرها"
+    },
+    {
+      "id": "pizza-american",
+      "name": "پیتزا آمریکایی"
+    },
+    {
+      "id": "pizza-italian",
+      "name": "پیتزا ایتالیایی"
+    },
+    {
+      "id": "salad-pasta",
+      "name": "پاستا و سالاد"
+    },
+    {
+      "id": "sandwich",
+      "name": "ساندویچ‌ها"
+    },
+    {
+      "id": "fries-snack",
+      "name": "سیب‌زمینی و اسنک"
+    },
+    {
+      "id": "chicken-sandwich",
+      "name": "ساندویچ‌های مرغ"
+    },
+    {
+      "id": "doner",
+      "name": "دونر"
+    },
+    {
+      "id": "fried-chicken",
+      "name": "سوخاری‌ها"
+    }
+  ],
+  "products": [
+    {
+      "id": "classic-burger",
+      "categoryId": "burger",
+      "name": "برگر کلاسیک دنیز",
+      "description": "گوشت گوساله، کاهو، گوجه، خیارشور و سس مخصوص",
+      "price": 220000,
+      "isAvailable": true
+    },
+    {
+      "id": "double-cheese-burger",
+      "categoryId": "burger",
+      "name": "چیزبرگر دوبل",
+      "description": "دو لایه گوشت، دو برش پنیر چدار و سس مخصوص",
+      "price": 290000,
+      "isAvailable": true
+    },
+    {
+      "id": "mushroom-burger",
+      "categoryId": "burger",
+      "name": "برگر قارچ و پنیر",
+      "description": "گوشت گوساله با قارچ سوته و پنیر ورقه‌ای",
+      "price": 260000,
+      "isAvailable": true
+    },
+    {
+      "id": "special-pizza",
+      "categoryId": "pizza-american",
+      "name": "پیتزا مخصوص دنیز",
+      "description": "پیتزای خوشمزه با ترکیبی از مواد تازه و پنیر مخصوص",
+      "price": 350000,
+      "isAvailable": true,
+      "image": "/images/pizza.png"
+    },
+    {
+      "id": "pepperoni-pizza",
+      "categoryId": "pizza-american",
+      "name": "پیتزا پپرونی",
+      "description": "پپرونی، پنیر موزارلا و سس گوجه",
+      "price": 320000,
+      "isAvailable": true
+    },
+    {
+      "id": "margherita-pizza",
+      "categoryId": "pizza-italian",
+      "name": "پیتزا مارگاریتا",
+      "description": "سس گوجه، پنیر موزارلا و ریحان تازه",
+      "price": 290000,
+      "isAvailable": true
+    },
+    {
+      "id": "four-cheese-pizza",
+      "categoryId": "pizza-italian",
+      "name": "پیتزا چهار پنیر",
+      "description": "موزارلا، پارمزان، گودا و پنیر آبی",
+      "price": 360000,
+      "isAvailable": true
+    },
+    {
+      "id": "caesar-salad",
+      "categoryId": "salad-pasta",
+      "name": "سالاد سزار",
+      "description": "کاهو، مرغ گریل، پنیر پارمزان و سس سزار",
+      "price": 190000,
+      "isAvailable": true
+    },
+    {
+      "id": "alfredo-pasta",
+      "categoryId": "salad-pasta",
+      "name": "پاستا آلفردو",
+      "description": "پنه با سس خامه، مرغ و قارچ",
+      "price": 240000,
+      "isAvailable": true
+    },
+    {
+      "id": "grilled-chicken-sandwich",
+      "categoryId": "chicken-sandwich",
+      "name": "ساندویچ مرغ گریل",
+      "description": "فیله مرغ گریل، کاهو، گوجه و سس سیر",
+      "price": 210000,
+      "isAvailable": true
+    },
+    {
+      "id": "crispy-chicken-sandwich",
+      "categoryId": "chicken-sandwich",
+      "name": "ساندویچ مرغ سوخاری",
+      "description": "فیله مرغ سوخاری، کاهو و سس مخصوص",
+      "price": 220000,
+      "isAvailable": true
+    },
+    {
+      "id": "club-sandwich",
+      "categoryId": "sandwich",
+      "name": "کلاب ساندویچ",
+      "description": "سینه مرغ، ژامبون، پنیر و سبزیجات تازه",
+      "price": 230000,
+      "isAvailable": true
+    },
+    {
+      "id": "sausage-sandwich",
+      "categoryId": "sandwich",
+      "name": "ساندویچ سوسیس",
+      "description": "سوسیس گریل، پنیر و قارچ",
+      "price": 180000,
+      "isAvailable": true
+    },
+    {
+      "id": "french-fries",
+      "categoryId": "fries-snack",
+      "name": "سیب‌زمینی سرخ‌کرده",
+      "description": "سیب‌زمینی طلایی و ترد با سس به‌انتخاب شما",
+      "price": 90000,
+      "isAvailable": true
+    },
+    {
+      "id": "cheese-fries",
+      "categoryId": "fries-snack",
+      "name": "سیب‌زمینی پنیری",
+      "description": "سیب‌زمینی سرخ‌کرده با سس پنیر چدار",
+      "price": 130000,
+      "isAvailable": true
+    },
+    {
+      "id": "chicken-doner",
+      "categoryId": "doner",
+      "name": "دونر مرغ",
+      "description": "مرغ ریش‌ریش‌شده، سبزیجات و سس مخصوص",
+      "price": 200000,
+      "isAvailable": true
+    },
+    {
+      "id": "beef-doner",
+      "categoryId": "doner",
+      "name": "دونر گوشت",
+      "description": "گوشت گوساله ریش‌ریش‌شده، سبزیجات و سس مخصوص",
+      "price": 240000,
+      "isAvailable": true
+    },
+    {
+      "id": "fried-chicken-four",
+      "categoryId": "fried-chicken",
+      "name": "سوخاری چهار تکه",
+      "description": "چهار تکه مرغ سوخاری ترد همراه با سیب‌زمینی",
+      "price": 280000,
+      "isAvailable": true
+    },
+    {
+      "id": "chicken-strips",
+      "categoryId": "fried-chicken",
+      "name": "استریپس مرغ",
+      "description": "نوارهای مرغ سوخاری همراه با سس دیپ",
+      "price": 190000,
+      "isAvailable": true
+    }
+  ]
+}

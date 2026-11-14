@@ -497,3 +497,349 @@
     transition: none;
   }
 }
+
+/* =========================================================
+   PRODUCT DETAILS — تصویر بزرگ و پنجره جزئیات محصول
+   این بخش را به انتهای فایل FoodMenu.css اضافه کنید.
+   ========================================================= */
+
+.food-product-image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  text-align: inherit;
+  cursor: zoom-in;
+}
+
+.food-product-image-button:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+
+.food-product-image {
+  position: relative;
+}
+
+.food-product-image-button .food-product-image img {
+  transition: transform .35s ease;
+}
+
+.food-product-image-button:hover .food-product-image img {
+  transform: scale(1.07);
+}
+
+.food-image-hint {
+  position: absolute;
+  inset-inline: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 9px;
+  background: rgba(23,79,90,.82);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.food-product-image-button:hover .food-image-hint,
+.food-product-image-button:focus-visible .food-image-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.food-modal-open {
+  overflow: hidden;
+}
+
+.food-modal-backdrop {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(8, 28, 32, .72);
+  backdrop-filter: blur(7px);
+  animation: foodModalFade .2s ease both;
+}
+
+.food-product-modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+  width: min(900px, 100%);
+  max-height: min( min(780px, 90vh), 900px);
+  overflow: auto;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 28px 90px rgba(0,0,0,.28);
+  animation: foodModalRise .28s ease both;
+}
+
+.food-modal-close {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  inset-inline-start: 14px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(23,79,90,.12);
+  border-radius: 50%;
+  background: rgba(255,255,255,.94);
+  color: var(--ink);
+  font: inherit;
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+.food-modal-image {
+  position: relative;
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, #effafa, #dcefee);
+}
+
+.food-modal-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  padding: 22px;
+  object-fit: contain;
+}
+
+.food-modal-image .food-image-fallback {
+  min-height: 430px;
+}
+
+.food-modal-image .food-image-fallback svg {
+  width: 100px;
+  height: 100px;
+}
+
+.food-modal-category {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.food-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 54px 34px 32px;
+}
+
+.food-modal-eyebrow {
+  margin-bottom: 8px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.food-modal-content h2 {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.food-modal-description {
+  margin: 0;
+  color: #61777b;
+  font-size: 15px;
+  line-height: 2.1;
+}
+
+.food-modal-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 26px 0 22px;
+}
+
+.food-modal-info > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #e2eeee;
+  border-radius: 14px;
+  background: #f6fbfb;
+}
+
+.food-modal-info span {
+  display: block;
+  margin-bottom: 7px;
+  color: #71878a;
+  font-size: 11px;
+}
+
+.food-modal-info strong {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.8;
+}
+
+.food-modal-info strong small {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.food-modal-info .is-available {
+  color: #16845c;
+}
+
+.food-modal-info .is-unavailable-text {
+  color: var(--danger);
+}
+
+.food-modal-add {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--sun);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.food-modal-add:hover:not(:disabled) {
+  background: var(--sun-hover);
+  transform: translateY(-2px);
+}
+
+.food-modal-add:disabled {
+  background: #e3e9e9;
+  color: #839194;
+  cursor: not-allowed;
+}
+
+.food-modal-add svg {
+  width: 19px;
+  height: 19px;
+}
+
+.food-modal-note {
+  margin: 13px 0 0;
+  color: #8a9b9e;
+  font-size: 11px;
+  text-align: center;
+}
+
+@keyframes foodModalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes foodModalRise {
+  from { opacity: 0; transform: translateY(16px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 650px) {
+  .food-modal-backdrop {
+    align-items: end;
+    padding: 10px;
+  }
+
+  .food-product-modal {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 22px;
+  }
+
+  .food-modal-image,
+  .food-modal-image img {
+    min-height: 0;
+    height: min(42vh, 300px);
+  }
+
+  .food-modal-image img {
+    padding: 14px;
+  }
+
+  .food-modal-image .food-image-fallback {
+    min-height: 0;
+  }
+
+  .food-modal-content {
+    padding: 22px 20px 20px;
+  }
+
+  .food-modal-content h2 {
+    margin-bottom: 8px;
+    font-size: 21px;
+  }
+
+  .food-modal-description {
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .food-modal-info {
+    margin: 16px 0;
+  }
+
+  .food-modal-info > div {
+    padding: 11px;
+  }
+
+  .food-modal-info strong {
+    font-size: 13px;
+  }
+
+  .food-modal-close {
+    top: 10px;
+    inset-inline-start: 10px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .food-image-hint {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .food-modal-backdrop,
+  .food-product-modal,
+  .food-product-image-button .food-product-image img,
+  .food-image-hint {
+    animation: none;
+    transition: none;
+  }
+}
