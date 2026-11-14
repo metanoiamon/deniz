@@ -390,14 +390,6 @@ const getProductCount = (productId) => {
     setExpanded(true);
   }
 
-  // سبد خرید نمایشی
-  function addToCart(product) {
-    setCart((current) => ({
-      ...current,
-      [product.id]: (current[product.id] ?? 0) + 1,
-    }));
-  }
-
   return (
     <section
       className="cafe-menu-section"

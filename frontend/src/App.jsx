@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-import Header from "./components/Header/Header";
+import Header from "./components/header/header";
 import Hero from "./components/Hero/Hero";
 import FoodMenu from "./components/FoodMenu/FoodMenu";
 import CafeMenu from "./components/CafeMenu/CafeMenu";

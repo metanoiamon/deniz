@@ -4,7 +4,7 @@
 #   bash deploy/scripts/backup.sh            (from the project folder, or from anywhere: it finds the project)
 #
 # Nightly with cron (crontab -e as the project's user), 03:30:
-#   30 3 * * * cd /home/arvin/deniz-api && mkdir -p backups && bash deploy/scripts/backup.sh >> backups/backup.log 2>&1
+#   30 3 * * * cd /home/arvin/deniz/backend && mkdir -p backups && bash deploy/scripts/backup.sh >> backups/backup.log 2>&1
 #
 # Restore a database backup (stop the API first: sudo systemctl stop deniz-api):
 #   pg_restore --clean --if-exists --no-owner -d "postgresql://deniz:PASSWORD@localhost:5432/deniz" backups/db-YYYYMMDD-HHMMSS.dump

@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 import "./Hero.css";
+import logo from "../../assets/images/Fast-Food-Deniz.png";
 
 const slides = [
   {
@@ -93,7 +94,7 @@ const Hero = () => {
               </div>
 
               <div className="hero-brand-note">
-                <img src="/src/assets/images/Fast-Food-Deniz.png" alt="لوگوی فست فود دنیز" />
+                <img src={logo} alt="لوگوی فست فود دنیز" />
               </div>
             </article>
           </SwiperSlide>

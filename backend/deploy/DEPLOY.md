@@ -4,7 +4,8 @@ A step-by-step guide for an Ubuntu server (22.04 or newer): the API as a systemd
 PostgreSQL on the same machine, nightly backups. Every file this guide installs is in `deploy/`; all of them were
 tested together (nginx in front of the production build, the deploy and backup scripts, a restore).
 
-Throughout: the Linux user is **`arvin`** and the project folder **`/home/arvin/deniz-api`**. Set the API's domain
+Throughout: the Linux user is **`arvin`** and the project folder **`/home/arvin/deniz/backend`** (the repository holds
+`backend/` and `frontend/`; everything here is about `backend/`, the frontend is built and served separately). Set the API's domain
 once, in the shell you run the commands in (every command below uses it):
 
 ```bash
@@ -45,8 +46,8 @@ sudo -u postgres psql -c "CREATE DATABASE deniz OWNER deniz;"
 
 ```bash
 cd ~
-git clone <repo-url> deniz-api        # or: unzip deniz-api.zip
-cd deniz-api
+git clone <repo-url> deniz          # the whole repository: backend/ and frontend/
+cd deniz/backend
 ```
 
 ### 1.4 `.env`
@@ -89,7 +90,7 @@ account).
 ### 1.6 The service
 
 ```bash
-sed -e 's#/home/arvin/deniz-api#'"$PWD"'#g' -e "s#^User=arvin#User=$USER#" -e "s#^Group=arvin#Group=$USER#" \
+sed -e 's#/home/arvin/deniz/backend#'"$PWD"'#g' -e "s#^User=arvin#User=$USER#" -e "s#^Group=arvin#Group=$USER#" \
 	deploy/systemd/deniz-api.service | sudo tee /etc/systemd/system/deniz-api.service >/dev/null
 sudo systemctl daemon-reload
 sudo systemctl enable --now deniz-api
@@ -101,7 +102,7 @@ The API listens on `127.0.0.1` only: it cannot be reached from outside except th
 ### 1.7 nginx and HTTPS
 
 ```bash
-sed -e 's#/home/arvin/deniz-api#'"$PWD"'#g' -e "s#api\.example\.ir#$DOMAIN#g" \
+sed -e 's#/home/arvin/deniz/backend#'"$PWD"'#g' -e "s#api\.example\.ir#$DOMAIN#g" \
 	deploy/nginx/deniz-api.conf | sudo tee /etc/nginx/sites-available/deniz-api >/dev/null
 sudo ln -sf /etc/nginx/sites-available/deniz-api /etc/nginx/sites-enabled/deniz-api
 # nginx (user www-data) serves the images straight from the project folder; the service writes them readable for
@@ -132,7 +133,7 @@ Port 3000 stays closed (and the API only listens on 127.0.0.1 anyway).
 bash deploy/scripts/backup.sh          # once by hand, to see it work
 crontab -e
 # add:
-30 3 * * * cd /home/arvin/deniz-api && mkdir -p backups && bash deploy/scripts/backup.sh >> backups/backup.log 2>&1
+30 3 * * * cd /home/arvin/deniz/backend && mkdir -p backups && bash deploy/scripts/backup.sh >> backups/backup.log 2>&1
 ```
 
 Backups land in `backups/` (database dump + the images), 14 days are kept (`KEEP_DAYS=30 bash …` for more). They are on
@@ -143,7 +144,7 @@ the same disk as the server: copy them elsewhere from time to time (e.g. `scp` t
 ## 2. Updating
 
 ```bash
-cd /home/arvin/deniz-api
+cd /home/arvin/deniz/backend
 # git clone: the script pulls by itself. A zip: unzip the new version over the folder first (keep .env and uploads/).
 bash deploy/scripts/deploy.sh
 ```

@@ -5,6 +5,20 @@ const CartContext = createContext(null);
 
 const STORAGE_KEY = "deniz-cart";
 
+// فقط آیتم‌های سالم: هر آیتم خراب (null، عدد، بدون id یا تعداد نامعتبر) کنار گذاشته می‌شه.
+// وگرنه یک آیتم خراب در localStorage باعث می‌شه کل صفحه موقع رندر کرش کنه، و چون ذخیره‌ست، در هر بار باز کردن سایت.
+const isValidItem = (item) =>
+  item !== null &&
+  typeof item === "object" &&
+  item.id !== undefined &&
+  Number.isInteger(Number(item.quantity)) &&
+  Number(item.quantity) > 0;
+
+const cleanItems = (items) =>
+  items
+    .filter(isValidItem)
+    .map((item) => ({ ...item, quantity: Number(item.quantity) }));
+
 // بازیابی سبد خرید از localStorage
 const getInitialCart = () => {
   try {
@@ -14,15 +28,13 @@ const getInitialCart = () => {
 
     const parsedCart = JSON.parse(savedCart);
 
-    // تبدیل اطلاعات قدیمی که به شکل Object ذخیره شده‌اند به Array
     if (Array.isArray(parsedCart)) {
-      return parsedCart;
+      return cleanItems(parsedCart);
     }
 
+    // تبدیل اطلاعات قدیمی که به شکل Object ذخیره شده‌اند به Array
     if (parsedCart && typeof parsedCart === "object") {
-      return Object.values(parsedCart).filter(
-        (item) => item && item.id !== undefined
-      );
+      return cleanItems(Object.values(parsedCart));
     }
 
     return [];
@@ -33,6 +45,7 @@ const getInitialCart = () => {
 };
 
 // استفاده از سبد خرید در کامپوننت‌ها
+// eslint-disable-next-line react-refresh/only-export-components -- hook کنار Provider خودش؛ فقط یعنی تغییر این فایل صفحه را کامل رفرش می‌کند
 export const useCart = () => {
   const context = useContext(CartContext);
 
@@ -47,8 +60,14 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(getInitialCart);
 
   // ذخیره سبد خرید
+  // اگه مرورگر ذخیره‌سازی رو بسته باشه (حالت خصوصی، کوکی‌های مسدود، حافظه‌ی پر) setItem خطا می‌ده؛
+  // خطای داخل useEffect کل صفحه رو سفید می‌کنه، پس فقط سبد ذخیره نمی‌شه و سایت کار می‌کنه.
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    } catch (error) {
+      console.warn("ذخیره‌ی سبد خرید ممکن نشد:", error);
+    }
   }, [cart]);
 
   // افزودن محصول

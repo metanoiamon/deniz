@@ -2,10 +2,10 @@
 # Updates the API on the server: backup, new code, dependencies, build, database migrations, switch, restart,
 # health check, and an automatic step back to the previous build if the new one does not start.
 #
-#   cd /home/arvin/deniz-api && bash deploy/scripts/deploy.sh
+#   cd /home/arvin/deniz/backend && bash deploy/scripts/deploy.sh
 #
-# The code is pulled from git when the folder is a git clone; otherwise copy the new files in first (e.g. unzip),
-# then run this. Order matters:
+# The code is pulled from git when the project is inside a git clone (also when the clone holds backend/ and frontend/
+# and this is backend/); otherwise copy the new files in first (e.g. unzip), then run this. Order matters:
 #   - the new build goes to dist.new: a failed build changes neither the database nor what the service runs
 #   - migrations run only after the build succeeded
 #   - dist is switched and the service restarted at the very end; until then the running version keeps serving
@@ -35,9 +35,11 @@ healthy() {
 step "Backup (database + images) before changing anything"
 bash deploy/scripts/backup.sh || fail "backup failed; nothing was changed"
 
-if [[ -d .git ]]; then
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 	step "Pull the new code"
 	git pull --ff-only || fail "git pull failed (local changes on the server?)"
+else
+	step "Not a git clone: deploying the files as they are in $PROJECT_DIR"
 fi
 
 step "Install dependencies (exactly the versions in package-lock.json)"

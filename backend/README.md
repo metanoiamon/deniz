@@ -206,14 +206,13 @@ afterwards). The test database is **wiped** on every run, so its name must conta
 
 ## CI
 
-`.github/workflows/ci.yml` runs on every push to `main` / `master`, on every pull request, once a week (Monday) and
-by hand (Actions → CI → Run workflow):
+The repository holds `backend/` and `frontend/`; GitHub only runs workflows from the repository's root, so they live
+in `../.github/workflows/`:
 
-| Job | What it checks |
-| --- | --- |
-| Build and test (Node 20.19 and 22) | `npm ci` from the lockfile → `prisma validate` → type check of `src`, `prisma` and `test` → migrations on an empty PostgreSQL 16 → **migrations match `schema.prisma`** (a schema change without its migration fails here) → production build → all unit and integration tests |
-| Check deploy scripts | ShellCheck on `deploy/scripts/*.sh` |
-| Security audit | `npm audit` of the production dependencies; fails on a high or critical advisory |
+| Workflow | Runs when | What it checks |
+| --- | --- | --- |
+| `backend.yml` | `backend/` changed (push to `main` / `master`, pull request), weekly on Monday, by hand | Node 20.19 and 22: `npm ci` from the lockfile → `prisma validate` → type check of `src`, `prisma` and `test` → migrations on an empty PostgreSQL 16 → **migrations match `schema.prisma`** (a schema change without its migration fails here) → production build → all unit and integration tests. Also ShellCheck on `deploy/scripts/*.sh` and `npm audit` of the production dependencies (fails on high or critical). |
+| `frontend.yml` | `frontend/` changed, by hand | `npm ci` → lint → production build on Linux (catches an import whose letter case does not match the file, which Windows accepts) |
 
 The weekly run catches a new security advisory even when nobody pushes. To block merging a red pull request, turn on
-branch protection for `main` (Settings → Branches) and require the three jobs.
+branch protection for `main` (Settings → Branches) and require the jobs.

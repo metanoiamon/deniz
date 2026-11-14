@@ -1,6 +1,6 @@
 
-import React from "react";
 import "./Footer.css";
+import logo from "../../assets/images/Fast-Food-Deniz.png";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="deniz-footer-brand">
           <div className="deniz-footer-logo">
             <img
-              src="/src/assets/images/Fast-Food-Deniz.png"
+              src={logo}
               alt="Deniz Fast Food"
               onError={(e) => {
                 e.currentTarget.style.display = "none";

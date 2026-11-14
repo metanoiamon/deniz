@@ -2,7 +2,7 @@
 #
 # Before use, replace (the guide does it with sed):
 #   arvin                   → the Linux user that owns the project
-#   /home/arvin/deniz-api   → the project folder
+#   /home/arvin/deniz/backend   → the project folder
 # and check the node path: `which node` (NodeSource installs to /usr/bin/node).
 #
 # Install:
@@ -23,7 +23,7 @@ StartLimitBurst=5
 Type=simple
 User=arvin
 Group=arvin
-WorkingDirectory=/home/arvin/deniz-api
+WorkingDirectory=/home/arvin/deniz/backend
 # the rest of the settings come from .env in the working directory
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/node dist/server.js
