@@ -1,193 +1,626 @@
 
-/* ========================================
-   DENIZ FAST FOOD FOOTER
-   Brand Colors:
+/* =========================================
+   DENIZ FAST FOOD - PREMIUM FOOTER
    Teal: #019ea7
    Yellow: #fdcc02
    Navy: #174f5a
-======================================== */
+========================================= */
 
 .deniz-footer {
   --teal: #019ea7;
-  --teal-dark: #017f87;
+  --teal-light: #20b8bd;
+  --teal-dark: #087d84;
   --yellow: #fdcc02;
-  --ink: #174f5a;
-  --muted: #5f777c;
-  --line: #dcebeb;
+  --navy: #174f5a;
+  --white: #ffffff;
+  --muted: #b7d5d6;
 
+  position: relative;
   width: 100%;
-  padding: 45px 20px 20px;
-  background: #f2fafa;
-  color: var(--ink);
+  padding: 35px 20px 20px;
+  overflow: hidden;
+  color: var(--white);
+  background:
+    radial-gradient(
+      circle at 5% 10%,
+      rgba(1, 158, 167, 0.35),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 95% 85%,
+      rgba(253, 204, 2, 0.09),
+      transparent 25%
+    ),
+    linear-gradient(135deg, #103e47, #174f5a 55%, #103d46);
   font-family: inherit;
 }
 
-.deniz-footer * {
+.deniz-footer *,
+.deniz-footer *::before,
+.deniz-footer *::after {
   box-sizing: border-box;
 }
 
+.deniz-footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .deniz-footer-container {
-  max-width: 1180px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+/* =========================================
+   CTA SECTION
+========================================= */
+
+.deniz-footer-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  min-height: 165px;
+  padding: 30px 38px;
+  margin-bottom: 55px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  background: linear-gradient(
+    110deg,
+    #019ea7,
+    #087d84
+  );
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.deniz-cta-text {
+  position: relative;
+  z-index: 2;
+}
+
+.deniz-cta-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 13px;
+  color: var(--navy);
+  background: var(--yellow);
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.deniz-cta-text h2 {
+  margin: 0 0 9px;
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.deniz-cta-text p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.deniz-cta-button {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-shrink: 0;
+  min-height: 52px;
+  padding: 0 22px;
+  color: var(--navy) !important;
+  background: var(--yellow);
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 900;
+  transition: 0.25s ease;
+}
+
+.deniz-cta-button:hover {
+  transform: translateY(-4px);
+  background: #ffe15c;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.deniz-cta-button span {
+  font-size: 22px;
+  transition: transform 0.25s ease;
+}
+
+.deniz-cta-button:hover span {
+  transform: translateX(-4px);
+}
+
+.deniz-cta-decoration {
+  position: absolute;
+  left: 27%;
+  top: -40px;
+  font-size: 155px;
+  opacity: 0.10;
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
+
+/* =========================================
+   MAIN FOOTER
+========================================= */
+
+.deniz-footer-main {
+  display: grid;
+  grid-template-columns: 1.15fr 0.8fr 1.2fr;
+  gap: 45px;
+  padding: 0 5px 45px;
 }
 
 /* Brand */
 
 .deniz-footer-brand {
-  text-align: center;
-  margin-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .deniz-footer-logo {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 12px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-
+  width: 105px;
+  height: 105px;
+  margin-bottom: 15px;
+  padding: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 23px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .deniz-footer-logo img {
   width: 100%;
   height: 100%;
-  padding: 8px;
   object-fit: contain;
 }
 
 .deniz-footer-brand h2 {
-  margin: 10px 0 4px;
+  margin: 0 0 5px;
+  color: var(--white);
   font-size: 25px;
+  font-weight: 950;
+}
+
+.deniz-brand-en {
+  color: var(--yellow);
+  font-size: 11px;
   font-weight: 900;
-  color: var(--teal);
+  letter-spacing: 3px;
 }
 
-.deniz-footer-brand p {
-  margin: 0;
-  font-size: 14px;
+.deniz-footer-brand > p {
+  margin: 16px 0 20px;
   color: var(--muted);
+  font-size: 13px;
+  line-height: 2.2;
 }
 
-/* Information */
-
-.deniz-footer-info {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  padding: 25px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+.deniz-instagram-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  color: var(--white) !important;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: 0.25s ease;
 }
 
-.deniz-footer-item {
+.deniz-instagram-button:hover {
+  color: var(--navy) !important;
+  background: var(--yellow);
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+}
+
+.deniz-instagram-icon {
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* Section Titles */
+
+.deniz-footer-links h3,
+.deniz-footer-contact h3 {
+  margin: 10px 0 13px;
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.deniz-footer-title-line {
+  display: block;
+  width: 45px;
+  height: 4px;
+  margin-bottom: 24px;
+  background: var(--yellow);
+  border-radius: 10px;
+}
+
+/* Quick Links */
+
+.deniz-footer-links {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
-  min-width: 0;
 }
 
-.deniz-footer-icon {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
+.deniz-footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 17px;
+  color: var(--muted);
+  font-size: 13px;
+  transition: 0.2s ease;
+}
 
+.deniz-footer-links a span {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--yellow);
+  background: rgba(253, 204, 2, 0.12);
+  border-radius: 7px;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
 
+.deniz-footer-links a:hover {
+  color: var(--yellow);
+  transform: translateX(-5px);
+}
+
+.deniz-footer-links a:hover span {
+  color: var(--navy);
   background: var(--yellow);
-  color: var(--ink);
-  border-radius: 12px;
-
-  font-size: 21px;
-  font-weight: 800;
 }
 
-.deniz-footer-item h3 {
-  margin: 0 0 8px;
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--ink);
+/* Contact Cards */
+
+.deniz-footer-contact {
+  display: flex;
+  flex-direction: column;
 }
 
-.deniz-footer-item p,
-.deniz-footer-item a {
-  display: block;
-  margin: 0 0 6px;
+.deniz-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  padding: 11px 12px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 13px;
+  transition: 0.25s ease;
+}
+
+.deniz-contact-card:hover {
+  background: rgba(1, 158, 167, 0.3);
+  border-color: rgba(253, 204, 2, 0.5);
+  transform: translateX(-4px);
+}
+
+.deniz-contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: var(--navy);
+  background: var(--yellow);
+  border-radius: 11px;
+  font-size: 19px;
+}
+
+.deniz-contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.deniz-contact-content strong {
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.deniz-contact-content small {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 2;
-  text-decoration: none;
-  overflow-wrap: anywhere;
-  transition: color 0.2s ease;
+  font-size: 11px;
+  line-height: 1.8;
 }
 
-.deniz-footer-item a:hover {
-  color: var(--teal);
+.deniz-contact-arrow {
+  margin-right: auto;
+  color: var(--yellow);
+  font-size: 18px;
 }
 
-/* Bottom */
+/* =========================================
+   BOTTOM
+========================================= */
 
 .deniz-footer-bottom {
-  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   text-align: center;
 }
 
+.deniz-footer-bottom-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.deniz-bottom-dot {
+  color: var(--yellow);
+  font-size: 7px;
+}
+
 .deniz-footer-bottom p {
-  margin: 0 0 8px;
+  margin: 0;
+  color: var(--yellow);
   font-size: 15px;
-  font-weight: 800;
-  color: var(--teal-dark);
+  font-weight: 900;
 }
 
-.deniz-footer-bottom span {
-  font-size: 12px;
-  color: var(--muted);
+.deniz-copyright {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
 }
 
-/* Tablet */
+/* =========================================
+   TABLET
+========================================= */
 
-@media (max-width: 768px) {
-  .deniz-footer-info {
-    grid-template-columns: 1fr;
-    gap: 22px;
+@media (max-width: 900px) {
+  .deniz-footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
   }
 
-  .deniz-footer-item {
-    max-width: 450px;
-    margin: 0 auto;
-    width: 100%;
+  .deniz-footer-brand {
+    grid-column: 1 / -1;
+    align-items: center;
+    text-align: center;
+  }
+
+  .deniz-footer-brand > p {
+    max-width: 420px;
+  }
+
+  .deniz-footer-links {
+    padding-right: 10px;
   }
 }
 
-/* Mobile */
+/* =========================================
+   MOBILE
+========================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .deniz-footer {
-    padding: 35px 16px 18px;
+    padding: 20px 13px 16px;
+  }
+
+  /* CTA */
+
+  .deniz-footer-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    min-height: auto;
+    padding: 23px 19px;
+    margin-bottom: 38px;
+    border-radius: 20px;
+  }
+
+  .deniz-cta-label {
+    font-size: 10px;
+  }
+
+  .deniz-cta-text h2 {
+    font-size: 19px;
+    line-height: 1.8;
+  }
+
+  .deniz-cta-text p {
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  .deniz-cta-button {
+    width: 100%;
+    min-height: 49px;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+
+  .deniz-cta-decoration {
+    left: -5px;
+    top: -5px;
+    font-size: 110px;
+  }
+
+  /* Main Layout */
+
+  .deniz-footer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 3px 30px;
+  }
+
+  /* Brand */
+
+  .deniz-footer-brand {
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+  }
+
+  .deniz-footer-logo {
+    width: 92px;
+    height: 92px;
+    margin-bottom: 12px;
+    border-radius: 20px;
   }
 
   .deniz-footer-brand h2 {
     font-size: 22px;
   }
 
-  .deniz-footer-logo {
-    width: 105px;
-    height: 90px;
+  .deniz-brand-en {
+    font-size: 10px;
   }
 
-  .deniz-footer-item h3 {
-    font-size: 14px;
-  }
-
-  .deniz-footer-item p,
-  .deniz-footer-item a {
+  .deniz-footer-brand > p {
+    margin: 12px 0 17px;
     font-size: 12px;
   }
 
-  .deniz-footer-bottom span {
+  .deniz-instagram-button {
+    width: 100%;
+    justify-content: center;
+    min-height: 47px;
+    font-size: 12px;
+  }
+
+  /* Links */
+
+  .deniz-footer-links {
+    padding: 0;
+  }
+
+  .deniz-footer-links h3,
+  .deniz-footer-contact h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+  }
+
+  .deniz-footer-title-line {
+    width: 38px;
+    height: 3px;
+    margin-bottom: 17px;
+  }
+
+  .deniz-footer-links a {
+    min-height: 37px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  /* Contact */
+
+  .deniz-footer-contact {
+    padding: 20px 13px 12px;
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 17px;
+  }
+
+  .deniz-contact-card {
+    min-height: 65px;
+    padding: 10px;
+    margin-bottom: 9px;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .deniz-contact-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  .deniz-contact-content strong {
+    font-size: 12px;
+  }
+
+  .deniz-contact-content small {
+    font-size: 11px;
+  }
+
+  /* Bottom */
+
+  .deniz-footer-bottom {
+    gap: 11px;
+    padding-top: 20px;
+  }
+
+  .deniz-footer-bottom p {
+    font-size: 14px;
+  }
+
+  .deniz-copyright {
     font-size: 10px;
+    line-height: 2;
+  }
+}
+
+/* Small Phones */
+
+@media (max-width: 360px) {
+  .deniz-footer {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .deniz-cta-text h2 {
+    font-size: 17px;
+  }
+
+  .deniz-contact-card {
+    gap: 8px;
+  }
+
+  .deniz-contact-content small {
+    font-size: 10px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .deniz-footer *,
+  .deniz-footer *::before,
+  .deniz-footer *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
   }
 }
