@@ -9,6 +9,9 @@ import "./FoodMenu.css";
 
 import { useCart } from "../../context/CartContext";
 
+// اتصال به بک‌اند
+const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/+$/, "");
+
 const CATEGORIES = [
   { id: "burger", name: "برگرها" },
   { id: "pizza-american", name: "پیتزا آمریکایی" },
@@ -260,11 +263,7 @@ function PlusIcon() {
 
 function ChevronIcon() {
   return (
-    <svg
-      className="food-panel-arrow"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
+    <svg className="food-panel-arrow" viewBox="0 0 24 24" aria-hidden="true">
       <path
         d="M6 15l6-6 6 6"
         fill="none"
@@ -428,10 +427,7 @@ function ProductDetailsModal({ product, onClose, onAdd }) {
 
         <div className="food-modal-image">
           <ProductImage src={product.image} alt={product.name} />
-
-          <span className="food-modal-category">
-            {categoryName}
-          </span>
+          <span className="food-modal-category">{categoryName}</span>
         </div>
 
         <div className="food-modal-content">
@@ -446,7 +442,6 @@ function ProductDetailsModal({ product, onClose, onAdd }) {
           <div className="food-modal-info">
             <div>
               <span>قیمت</span>
-
               <strong>
                 {formatNumber(product.price)} <small>تومان</small>
               </strong>
@@ -480,6 +475,57 @@ const FoodMenu = () => {
   const [expanded, setExpanded] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  // اطلاعات محصولات
+  const [products, setProducts] = useState(PRODUCTS);
+  const [loading, setLoading] = useState(true);
+
+  // دریافت غذاها از بک‌اند
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const getFoods = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/foods`, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`خطای سرور: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        console.log("اطلاعات دریافتی از بک‌اند:", result);
+
+        const foods = Array.isArray(result)
+          ? result
+          : Array.isArray(result.data)
+            ? result.data
+            : Array.isArray(result.foods)
+              ? result.foods
+              : null;
+
+        if (!foods) {
+          throw new Error("ساختار اطلاعات دریافتی از API معتبر نیست.");
+        }
+
+        setProducts(foods);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error("خطا در دریافت غذاها:", error);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    getFoods();
+
+    return () => controller.abort();
+  }, []);
+
   const { cart = [], addItem } = useCart();
 
   const cartItems = Array.isArray(cart)
@@ -492,10 +538,10 @@ const FoodMenu = () => {
 
   const visibleProducts = useMemo(
     () =>
-      PRODUCTS.filter(
+      products.filter(
         (product) => product.categoryId === activeCategory
       ),
-    [activeCategory]
+    [products, activeCategory]
   );
 
   function selectCategory(id) {
@@ -565,8 +611,10 @@ const FoodMenu = () => {
           </button>
 
           <div id="food-products">
-            {expanded &&
-              (visibleProducts.length === 0 ? (
+            {expanded && (
+              loading && products.length === 0 ? (
+                <p className="food-status">در حال دریافت منو...</p>
+              ) : visibleProducts.length === 0 ? (
                 <p className="food-status">
                   برای این دسته هنوز محصولی ثبت نشده است.
                 </p>
@@ -590,7 +638,8 @@ const FoodMenu = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-              ))}
+              )
+            )}
           </div>
         </div>
       </div>

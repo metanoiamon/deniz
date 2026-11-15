@@ -1,11 +1,15 @@
+
 /* ==========================================================================
    CAFE MENU — Deniz Cafe
-   رنگ‌های برند: فیروزه‌ای #019ea7 · زرد #fdcc02 · سرمه‌ای-سبز #174f5a
+   رنگ‌های برند:
+   فیروزه‌ای #019ea7
+   زرد #fdcc02
+   سرمه‌ای-سبز #174f5a
    ========================================================================== */
 
 .cafe-menu-section {
   --teal: #019ea7;
-  --teal-strong: #017f87; /* برای متن روی زمینه‌ی روشن، خوانایی بهتر */
+  --teal-strong: #017f87;
   --ink: #174f5a;
   --sun: #fdcc02;
   --sun-hover: #f0be00;
@@ -14,14 +18,13 @@
   --muted: #5f777c;
   --danger: #c62828;
 
-   width: 100%;
+  width: 100%;
   padding: 48px 20px 56px;
   background: #ffffff;
   color: var(--ink);
   direction: rtl;
   font-family: inherit;
 }
-
 
 .cafe-menu-container {
   width: 100%;
@@ -270,7 +273,9 @@
   line-height: 1.9;
 }
 
-/* قیمت و دکمه‌ی افزودن */
+/* ==========================================================================
+   قیمت و دکمه افزودن
+   ========================================================================== */
 
 .cafe-product-bottom {
   margin-top: auto;
@@ -352,7 +357,9 @@
   line-height: 1;
 }
 
-/* ناموجود */
+/* ==========================================================================
+   ناموجود
+   ========================================================================== */
 
 .cafe-product-card.is-unavailable .cafe-product-image img {
   opacity: 0.45;
@@ -389,9 +396,315 @@
 
 .cafe-category:focus-visible,
 .cafe-panel-header:focus-visible,
-.cafe-add-button:focus-visible {
+.cafe-add-button:focus-visible,
+.cafe-product-image-button:focus-visible {
   outline: 3px solid var(--teal-strong);
-  outline-offset: 2px;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   جزئیات محصول
+   ========================================================================== */
+
+.cafe-product-image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  text-align: inherit;
+  cursor: zoom-in;
+}
+
+.cafe-product-image-button:disabled {
+  cursor: not-allowed;
+}
+
+.cafe-product-image-button .cafe-product-image img {
+  transition: transform 0.35s ease;
+}
+
+.cafe-product-image-button:hover .cafe-product-image img {
+  transform: scale(1.07);
+}
+
+.cafe-image-hint {
+  position: absolute;
+  inset-inline: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 9px;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 9px;
+  background: rgba(23, 79, 90, 0.82);
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cafe-product-image-button:hover .cafe-image-hint,
+.cafe-product-image-button:focus-visible .cafe-image-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   پنجره جزئیات محصول
+   ========================================================================== */
+
+.cafe-modal-open {
+  overflow: hidden;
+}
+
+.cafe-modal-backdrop {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+  padding: 22px;
+
+  background: rgba(8, 28, 32, 0.72);
+  backdrop-filter: blur(7px);
+
+  animation: cafeModalFade 0.2s ease both;
+}
+
+.cafe-product-modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+
+  width: min(900px, 100%);
+  max-height: min(780px, 90vh);
+
+  overflow: auto;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 26px;
+  background: #ffffff;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+
+  animation: cafeModalRise 0.28s ease both;
+}
+
+.cafe-modal-close {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  inset-inline-start: 14px;
+
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(23, 79, 90, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 27px;
+  line-height: 1;
+
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.cafe-modal-image {
+  position: relative;
+  min-height: 430px;
+
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  background: linear-gradient(145deg, #effafa, #dcefee);
+}
+
+.cafe-modal-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  padding: 22px;
+  object-fit: contain;
+}
+
+.cafe-modal-image .cafe-image-fallback {
+  min-height: 430px;
+}
+
+.cafe-modal-image .cafe-image-fallback svg {
+  width: 100px;
+  height: 100px;
+}
+
+.cafe-modal-category {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  background: var(--ink);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cafe-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 54px 34px 32px;
+}
+
+.cafe-modal-eyebrow {
+  margin-bottom: 8px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.cafe-modal-content h2 {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.cafe-modal-description {
+  margin: 0;
+  color: #61777b;
+  font-size: 15px;
+  line-height: 2.1;
+}
+
+.cafe-modal-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 26px 0 22px;
+}
+
+.cafe-modal-info > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #e2eeee;
+  border-radius: 14px;
+  background: #f6fbfb;
+}
+
+.cafe-modal-info span {
+  display: block;
+  margin-bottom: 7px;
+  color: #71878a;
+  font-size: 11px;
+}
+
+.cafe-modal-info strong {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.8;
+}
+
+.cafe-modal-info strong small {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.cafe-modal-add {
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 0;
+  border-radius: 14px;
+  background: var(--sun);
+  color: var(--ink);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.cafe-modal-add:hover:not(:disabled) {
+  background: var(--sun-hover);
+  transform: translateY(-2px);
+}
+
+.cafe-modal-add:disabled {
+  background: #e3e9e9;
+  color: #839194;
+  cursor: not-allowed;
+}
+
+.cafe-modal-add svg {
+  width: 19px;
+  height: 19px;
+}
+
+.cafe-modal-note {
+  margin: 13px 0 0;
+  color: #8a9b9e;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   انیمیشن‌ها
+   ========================================================================== */
+
+@keyframes cafeModalFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cafeModalRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ==========================================================================
@@ -479,6 +792,72 @@
     width: 34px;
     height: 34px;
   }
+
+  /* پنجره جزئیات در موبایل */
+
+  .cafe-modal-backdrop {
+    align-items: end;
+    padding: 10px;
+  }
+
+  .cafe-product-modal {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 22px;
+  }
+
+  .cafe-modal-image,
+  .cafe-modal-image img {
+    min-height: 0;
+    height: min(42vh, 300px);
+  }
+
+  .cafe-modal-image img {
+    padding: 14px;
+  }
+
+  .cafe-modal-image .cafe-image-fallback {
+    min-height: 0;
+  }
+
+  .cafe-modal-content {
+    padding: 22px 20px 20px;
+  }
+
+  .cafe-modal-content h2 {
+    margin-bottom: 8px;
+    font-size: 21px;
+  }
+
+  .cafe-modal-description {
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .cafe-modal-info {
+    margin: 16px 0;
+  }
+
+  .cafe-modal-info > div {
+    padding: 11px;
+  }
+
+  .cafe-modal-info strong {
+    font-size: 13px;
+  }
+
+  .cafe-modal-close {
+    top: 10px;
+    inset-inline-start: 10px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .cafe-image-hint {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 360px) {
@@ -495,7 +874,13 @@
   .cafe-category,
   .cafe-product-card,
   .cafe-panel-arrow,
-  .cafe-add-button {
+  .cafe-add-button,
+  .cafe-modal-backdrop,
+  .cafe-product-modal,
+  .cafe-product-image-button .cafe-product-image img,
+  .cafe-image-hint,
+  .cafe-modal-add {
+    animation: none;
     transition: none;
   }
 }
