@@ -1,5 +1,23 @@
 /* ظاهر اصلی منو در MenuBoard/MenuBoard.css است؛ اینجا فقط تنظیمات مخصوص منوی کافی‌شاپ. */
 
 .menu--cafe {
-  /* --menu-sticky-top: 64px; */
+  /* اگر هدر سایت چسبنده (sticky/fixed) است، ارتفاعش را اینجا بدهید
+     تا نوار دسته‌ها زیر آن بچسبد. مثال: --menu-sticky-top: 64px; */
+  --menu-sticky-top: 0px;
+
+  /* رنگ بنر بالای منو؛ با همین سه متغیر می‌شود رنگ را عوض کرد */
+  --hero-from: #0f6b74;
+  --hero-mid: #019ea7;
+  --hero-to: #2bb8bf;
+}
+
+/* بنر کافی‌شاپ: جهت گرادیان متفاوت از منوی غذا */
+.menu--cafe .menu-hero {
+  background: linear-gradient(240deg, var(--hero-from) 0%, var(--hero-mid) 55%, var(--hero-to) 100%);
+}
+
+/* دایره‌ی زرد بنر به سمت دیگر برود تا دو بخش فرق کنند */
+.menu--cafe .menu-hero::before {
+  inset-inline-start: auto;
+  inset-inline-end: -60px;
 }

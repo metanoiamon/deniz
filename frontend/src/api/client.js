@@ -27,7 +27,9 @@ export async function api(path, { method = "GET", body, signal, auth = false } =
   const data = await response.json().catch(() => null);
 
   if (!response.ok) {
-    throw new Error(data?.message || `خطای سرور (${response.status})`);
+    const error = new Error(data?.message || `خطای سرور (${response.status})`);
+    error.status = response.status;
+    throw error;
   }
 
   return data;

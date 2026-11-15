@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext(null);
@@ -74,14 +73,14 @@ export const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     setCart((currentCart) => {
       const existingProduct = currentCart.find(
-        (item) => String(item.id) === String(product.id)
+        (item) => String(item.id) === String(product.id),
       );
 
       if (existingProduct) {
         return currentCart.map((item) =>
           String(item.id) === String(product.id)
             ? { ...item, quantity: item.quantity + 1 }
-            : item
+            : item,
         );
       }
 
@@ -100,14 +99,12 @@ export const CartProvider = ({ children }) => {
     setCart((currentCart) => {
       if (quantity <= 0) {
         return currentCart.filter(
-          (item) => String(item.id) !== String(productId)
+          (item) => String(item.id) !== String(productId),
         );
       }
 
       return currentCart.map((item) =>
-        String(item.id) === String(productId)
-          ? { ...item, quantity }
-          : item
+        String(item.id) === String(productId) ? { ...item, quantity } : item,
       );
     });
   };
@@ -118,8 +115,8 @@ export const CartProvider = ({ children }) => {
       currentCart.map((item) =>
         String(item.id) === String(productId)
           ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -127,17 +124,15 @@ export const CartProvider = ({ children }) => {
   const decrease = (productId) => {
     updateQuantity(
       productId,
-      (cart.find((item) => String(item.id) === String(productId))
-        ?.quantity || 0) - 1
+      (cart.find((item) => String(item.id) === String(productId))?.quantity ||
+        0) - 1,
     );
   };
 
   // حذف محصول
   const removeFromCart = (productId) => {
     setCart((currentCart) =>
-      currentCart.filter(
-        (item) => String(item.id) !== String(productId)
-      )
+      currentCart.filter((item) => String(item.id) !== String(productId)),
     );
   };
 
@@ -149,14 +144,14 @@ export const CartProvider = ({ children }) => {
   // مجموع تعداد محصولات
   const totalItems = cart.reduce(
     (total, item) => total + (Number(item.quantity) || 0),
-    0
+    0,
   );
 
   // مبلغ کل
   const totalPrice = cart.reduce(
     (total, item) =>
       total + (Number(item.price) || 0) * (Number(item.quantity) || 0),
-    0
+    0,
   );
 
   return (
