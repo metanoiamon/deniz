@@ -1,4 +1,3 @@
-
 import { lazy, Suspense, useState } from "react";
 
 import Header from "./components/header/header";
@@ -46,12 +45,10 @@ function AppContent() {
     setShowSurvey(true);
 
     window.setTimeout(() => {
-      document
-        .getElementById("survey-section")
-        ?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+      document.getElementById("survey-section")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }, 100);
   };
 
@@ -69,9 +66,9 @@ function AppContent() {
         <main id="home">
           <Hero />
 
-          <FoodMenu />
+          <FoodMenu onOpenCart={openCart} />
 
-          <CafeMenu />
+          <CafeMenu onOpenCart={openCart} />
 
           {/* بخش نظرسنجی؛ ابتدا مخفی است */}
           {showSurvey && (
@@ -89,17 +86,13 @@ function AppContent() {
           className="survey-notification"
           onClick={openSurvey}
         >
-          <span className="survey-notification-icon">
-            ⭐
-          </span>
+          <span className="survey-notification-icon">⭐</span>
 
           <span className="survey-notification-text">
             نظرت درباره دنیز برامون مهمه!
           </span>
 
-          <span className="survey-notification-action">
-            ثبت نظر
-          </span>
+          <span className="survey-notification-action">ثبت نظر</span>
         </button>
       )}
 
@@ -108,9 +101,7 @@ function AppContent() {
       {/* پنل مدیریت */}
       {AdminPanel && adminOpen && (
         <Suspense fallback={null}>
-          <AdminPanel
-            onClose={() => setAdminOpen(false)}
-          />
+          <AdminPanel onClose={() => setAdminOpen(false)} />
         </Suspense>
       )}
     </>

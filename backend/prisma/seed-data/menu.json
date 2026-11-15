@@ -1,0 +1,506 @@
+{
+  "menuTypes": [
+    {
+      "ref": 1,
+      "name": "منوی غذا",
+      "sortOrder": 0,
+      "isActive": true
+    },
+    {
+      "ref": 2,
+      "name": "منوی کافی‌شاپ",
+      "sortOrder": 1,
+      "isActive": true
+    }
+  ],
+  "categories": [
+    {
+      "ref": 1,
+      "name": "برگرها",
+      "menuTypeRef": 1,
+      "sortOrder": 0
+    },
+    {
+      "ref": 2,
+      "name": "پیتزا آمریکایی",
+      "menuTypeRef": 1,
+      "sortOrder": 1
+    },
+    {
+      "ref": 3,
+      "name": "پیتزا ایتالیایی",
+      "menuTypeRef": 1,
+      "sortOrder": 2
+    },
+    {
+      "ref": 4,
+      "name": "پاستا و سالاد",
+      "menuTypeRef": 1,
+      "sortOrder": 3
+    },
+    {
+      "ref": 5,
+      "name": "ساندویچ‌ها",
+      "menuTypeRef": 1,
+      "sortOrder": 4
+    },
+    {
+      "ref": 6,
+      "name": "سیب‌زمینی و اسنک",
+      "menuTypeRef": 1,
+      "sortOrder": 5
+    },
+    {
+      "ref": 7,
+      "name": "ساندویچ‌های مرغ",
+      "menuTypeRef": 1,
+      "sortOrder": 6
+    },
+    {
+      "ref": 8,
+      "name": "دونر",
+      "menuTypeRef": 1,
+      "sortOrder": 7
+    },
+    {
+      "ref": 9,
+      "name": "سوخاری‌ها",
+      "menuTypeRef": 1,
+      "sortOrder": 8
+    },
+    {
+      "ref": 10,
+      "name": "چای و نوشیدنی صبحانه",
+      "menuTypeRef": 2,
+      "sortOrder": 0
+    },
+    {
+      "ref": 11,
+      "name": "آیس کافی",
+      "menuTypeRef": 2,
+      "sortOrder": 1
+    },
+    {
+      "ref": 12,
+      "name": "هات کافی",
+      "menuTypeRef": 2,
+      "sortOrder": 2
+    },
+    {
+      "ref": 13,
+      "name": "آیس پک",
+      "menuTypeRef": 2,
+      "sortOrder": 3
+    },
+    {
+      "ref": 14,
+      "name": "شیک",
+      "menuTypeRef": 2,
+      "sortOrder": 4
+    },
+    {
+      "ref": 15,
+      "name": "کیک",
+      "menuTypeRef": 2,
+      "sortOrder": 5
+    }
+  ],
+  "products": [
+    {
+      "ref": 1,
+      "name": "برگر کلاسیک دنیز",
+      "price": 220000,
+      "description": "گوشت گوساله، کاهو، گوجه، خیارشور و سس مخصوص",
+      "image": "placeholder.png",
+      "categoryRef": 1,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 2,
+      "name": "چیزبرگر دوبل",
+      "price": 290000,
+      "description": "دو لایه گوشت، دو برش پنیر چدار و سس مخصوص",
+      "image": "placeholder.png",
+      "categoryRef": 1,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 3,
+      "name": "برگر قارچ و پنیر",
+      "price": 260000,
+      "description": "گوشت گوساله با قارچ سوته و پنیر ورقه‌ای",
+      "image": "placeholder.png",
+      "categoryRef": 1,
+      "sortOrder": 2,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 4,
+      "name": "پیتزا مخصوص دنیز",
+      "price": 350000,
+      "description": "پیتزای خوشمزه با ترکیبی از مواد تازه و پنیر مخصوص",
+      "image": "placeholder.png",
+      "categoryRef": 2,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 5,
+      "name": "پیتزا پپرونی",
+      "price": 320000,
+      "description": "پپرونی، پنیر موزارلا و سس گوجه",
+      "image": "placeholder.png",
+      "categoryRef": 2,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 6,
+      "name": "پیتزا مارگاریتا",
+      "price": 290000,
+      "description": "سس گوجه، پنیر موزارلا و ریحان تازه",
+      "image": "placeholder.png",
+      "categoryRef": 3,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 7,
+      "name": "پیتزا چهار پنیر",
+      "price": 360000,
+      "description": "موزارلا، پارمزان، گودا و پنیر آبی",
+      "image": "placeholder.png",
+      "categoryRef": 3,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 8,
+      "name": "سالاد سزار",
+      "price": 190000,
+      "description": "کاهو، مرغ گریل، پنیر پارمزان و سس سزار",
+      "image": "placeholder.png",
+      "categoryRef": 4,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 9,
+      "name": "پاستا آلفردو",
+      "price": 240000,
+      "description": "پنه با سس خامه، مرغ و قارچ",
+      "image": "placeholder.png",
+      "categoryRef": 4,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 10,
+      "name": "ساندویچ مرغ گریل",
+      "price": 210000,
+      "description": "فیله مرغ گریل، کاهو، گوجه و سس سیر",
+      "image": "placeholder.png",
+      "categoryRef": 7,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 11,
+      "name": "ساندویچ مرغ سوخاری",
+      "price": 220000,
+      "description": "فیله مرغ سوخاری، کاهو و سس مخصوص",
+      "image": "placeholder.png",
+      "categoryRef": 7,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 12,
+      "name": "کلاب ساندویچ",
+      "price": 230000,
+      "description": "سینه مرغ، ژامبون، پنیر و سبزیجات تازه",
+      "image": "placeholder.png",
+      "categoryRef": 5,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 13,
+      "name": "ساندویچ سوسیس",
+      "price": 180000,
+      "description": "سوسیس گریل، پنیر و قارچ",
+      "image": "placeholder.png",
+      "categoryRef": 5,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 14,
+      "name": "سیب‌زمینی سرخ‌کرده",
+      "price": 90000,
+      "description": "سیب‌زمینی طلایی و ترد با سس به‌انتخاب شما",
+      "image": "placeholder.png",
+      "categoryRef": 6,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 15,
+      "name": "سیب‌زمینی پنیری",
+      "price": 130000,
+      "description": "سیب‌زمینی سرخ‌کرده با سس پنیر چدار",
+      "image": "placeholder.png",
+      "categoryRef": 6,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 16,
+      "name": "دونر مرغ",
+      "price": 200000,
+      "description": "مرغ ریش‌ریش‌شده، سبزیجات و سس مخصوص",
+      "image": "placeholder.png",
+      "categoryRef": 8,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 17,
+      "name": "دونر گوشت",
+      "price": 240000,
+      "description": "گوشت گوساله ریش‌ریش‌شده، سبزیجات و سس مخصوص",
+      "image": "placeholder.png",
+      "categoryRef": 8,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 18,
+      "name": "سوخاری چهار تکه",
+      "price": 280000,
+      "description": "چهار تکه مرغ سوخاری ترد همراه با سیب‌زمینی",
+      "image": "placeholder.png",
+      "categoryRef": 9,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 19,
+      "name": "استریپس مرغ",
+      "price": 190000,
+      "description": "نوارهای مرغ سوخاری همراه با سس دیپ",
+      "image": "placeholder.png",
+      "categoryRef": 9,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 20,
+      "name": "چای دمی",
+      "price": 60000,
+      "description": "چای سیاه تازه‌دم، همراه با نبات",
+      "image": "placeholder.png",
+      "categoryRef": 10,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 21,
+      "name": "چای ماسالا",
+      "price": 95000,
+      "description": "چای سیاه با شیر و ادویه‌های گرم",
+      "image": "placeholder.png",
+      "categoryRef": 10,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 22,
+      "name": "شیر کاکائو داغ",
+      "price": 90000,
+      "description": "شیر داغ با کاکائوی غلیظ",
+      "image": "placeholder.png",
+      "categoryRef": 10,
+      "sortOrder": 2,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 23,
+      "name": "آیس لاته",
+      "price": 150000,
+      "description": "اسپرسو دوبل، شیر سرد و یخ",
+      "image": "placeholder.png",
+      "categoryRef": 11,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 24,
+      "name": "آیس آمریکانو",
+      "price": 120000,
+      "description": "اسپرسو دوبل با آب سرد و یخ",
+      "image": "placeholder.png",
+      "categoryRef": 11,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 25,
+      "name": "آیس موکا",
+      "price": 170000,
+      "description": "اسپرسو، سس شکلات، شیر سرد و یخ",
+      "image": "placeholder.png",
+      "categoryRef": 11,
+      "sortOrder": 2,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 26,
+      "name": "اسپرسو",
+      "price": 85000,
+      "description": "یک شات اسپرسوی غلیظ و خوش‌عطر",
+      "image": "placeholder.png",
+      "categoryRef": 12,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 27,
+      "name": "کاپوچینو",
+      "price": 140000,
+      "description": "اسپرسو با شیر بخارداده و فوم نرم",
+      "image": "placeholder.png",
+      "categoryRef": 12,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 28,
+      "name": "لاته",
+      "price": 145000,
+      "description": "اسپرسو دوبل با شیر بخارداده",
+      "image": "placeholder.png",
+      "categoryRef": 12,
+      "sortOrder": 2,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 29,
+      "name": "آیس پک کارامل",
+      "price": 190000,
+      "description": "قهوه و یخ مخلوط‌شده با سس کارامل و خامه",
+      "image": "placeholder.png",
+      "categoryRef": 13,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 30,
+      "name": "آیس پک موکا",
+      "price": 195000,
+      "description": "قهوه و یخ مخلوط‌شده با سس شکلات و خامه",
+      "image": "placeholder.png",
+      "categoryRef": 13,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 31,
+      "name": "شیک شکلات",
+      "price": 200000,
+      "description": "بستنی وانیل، شیر و سس شکلات",
+      "image": "placeholder.png",
+      "categoryRef": 14,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 32,
+      "name": "شیک توت‌فرنگی",
+      "price": 210000,
+      "description": "بستنی، شیر و توت‌فرنگی تازه",
+      "image": "placeholder.png",
+      "categoryRef": 14,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 33,
+      "name": "شیک وانیل",
+      "price": 190000,
+      "description": "بستنی وانیل و شیر، همراه با خامه",
+      "image": "placeholder.png",
+      "categoryRef": 14,
+      "sortOrder": 2,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 34,
+      "name": "کیک شکلاتی",
+      "price": 170000,
+      "description": "کیک اسفنجی شکلاتی با روکش گاناش",
+      "image": "placeholder.png",
+      "categoryRef": 15,
+      "sortOrder": 0,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 35,
+      "name": "چیزکیک",
+      "price": 200000,
+      "description": "چیزکیک خامه‌ای با سس میوه‌ی قرمز",
+      "image": "placeholder.png",
+      "categoryRef": 15,
+      "sortOrder": 1,
+      "isActive": true,
+      "isAvailable": true
+    },
+    {
+      "ref": 36,
+      "name": "کیک هویج و گردو",
+      "price": 180000,
+      "description": "کیک ادویه‌دار با هویج، گردو و کرم پنیر",
+      "image": "placeholder.png",
+      "categoryRef": 15,
+      "sortOrder": 2,
+      "isActive": true,
+      "isAvailable": true
+    }
+  ]
+}
